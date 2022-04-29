@@ -1,0 +1,422 @@
+\documentclass[graybox]{svmult}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{mathtools}
+\usepackage{mathptmx}       
+\usepackage{helvet}        
+\usepackage{courier}      
+\usepackage{type1cm}     
+\usepackage{listings}                        
+\usepackage{makeidx}    
+\usepackage{graphicx}   
+\usepackage{multicol}        
+\usepackage[bottom]{footmisc}
+\usepackage{tikz-cd}
+\usepackage{hyperref}
+
+% For mathcal fonts
+\usepackage{eucal} 
+
+\let\remark\relax
+\let\theorem\relax
+\let\lemma\relax
+\let\definition\relax
+\let\proposition\relax
+\let\corollary\relax
+\let\exercise\relax
+\let\example\relax
+\let\conjecture\relax
+
+\def\factname{Fact}
+
+\spnewtheorem{theorem}{\theoremname}[section]{\bfseries}{\itshape}
+%\renewcommand\thetheorem{\arabic{theorem}}
+\spnewtheorem{lemma}[theorem]{\lemmaname}{\bfseries}{\itshape}
+\spnewtheorem{definition}[theorem]{\definitionname}{\bfseries}{\itshape}
+\spnewtheorem{proposition}[theorem]{\propositionname}{\bfseries}{\itshape}
+\spnewtheorem{corollary}[theorem]{\corollaryname}{\bfseries}{\itshape}
+\spnewtheorem{exercise}[theorem]{\exercisename}{\bfseries}{\upshape}
+\spnewtheorem{example}[theorem]{\examplename}{\bfseries}{\upshape}
+\spnewtheorem{examples}[theorem]{\examplesname}{\bfseries}{\upshape}
+\spnewtheorem{remark}[theorem]{\remarkname}{}{\upshape}
+\spnewtheorem{conjecture}[theorem]{\conjecturename}{\bfseries}{\upshape}
+\spnewtheorem{notation}[theorem]{\notationname}{\bfseries}{\upshape}
+\spnewtheorem{convention}[theorem]{\conventionname}{\bfseries}{\upshape}
+\spnewtheorem{fact}[theorem]{\factname}{\bfseries}{\upshape}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\Obj}{\operatorname{Obj}}
+\newcommand{\Sym}{\operatorname{Sym}}
+
+\newcommand{\category}[1]{{\normalfont\textbf{#1}}}
+\newcommand{\Grp}{\category{Grp}}
+\newcommand{\Hp}{\category{Hp}}
+
+% para enumerar
+\renewcommand{\labelenumi}{\arabic{enumi})}
+
+% for QED
+\let\proof\relax\let\endproof\relax
+\usepackage{amsthm}
+
+\makeindex
+
+\begin{document}
+
+\title*{Trusses: between braces and rings}
+\author{Tomasz Brzezi\'nski}
+
+\institute{Tomasz Brzezi\'nski \at Swansea University (UK) and University of Bialystok (Poland), 
+\email{t.brzezinski@swansea.ac.uk}}
+
+%\author{Leandro Vendramin}
+%\institute{Leandro Vendramin \at Vrije Universiteit Brussel, \email{Leandro.Vendramin@vub.be}}
+
+\maketitle
+
+\abstract{
+An algebraic structure is a collection of sets with operations. Typical and most widespread across mathematics are systems such as a semigroup, monoid, group, ring, field, associative algebra, vector space or module. In this lecture course we will study some simple algebraic systems which have recently gained prominent position in algebra and topology such as braces,  racks or quandles (sets with two operations interacting with  each other in prescribed ways).  In particular we will explore a little known fact (first described nearly 100 years ago by Pruefer and Baer) that one can give a definition of a group without requesting existence of the neutral element and inverses by using a ternary rather than a binary operation (i.e. an operation with three rather than the usual two inputs). A set with such a suitable ternary operation is known as a heap. By picking an element in a heap, the ternary operation is reduced to the binary group operation, for which the chosen element is the neutral element (the resulting group is known as  a retract). We will study properties and examples of heaps and relate them to the properties of corresponding groups (retracts). Next we will look at heaps with an additional binary operation that distributes over the ternary heap operation, known as trusses, relate them to both rings and braces, and study their properties and applications.
+}
+
+%{\let\clearpage\relax\tableofcontents}
+
+\section{Introduction}
+
+The notes correspond to a 8-hours mini-course 
+taught by Prof. Tomasz Brzezi\'nski at the 
+Department of Mathematics at ULB, Brussels, in May 2022.
+The course is addressed to Master and PhD students,
+researchers and any one else with an 
+interest in (new) algebraic structures. 
+Notes by
+Leandro Vendramin. Please send comments and corrections to: \url{Leandro.Vendramin@vub.be} 
+
+\section{Algebras}
+
+%We start with some basic definitions from universal algebra. 
+
+\begin{definition}
+\index{Algebraic structure}
+    An \textbf{algebraic structure} is a set $A$ 
+    with a collection of maps (called operations) 
+    $\alpha_i\colon A^{|\alpha_i|}\to A$ for $i\in I$. By 
+    convention, $A^0=\{*\}$. This algebraic structure on $A$ 
+    will be denoted by $(A,(\alpha_i)_{i\in I})$. 
+    The number $|\alpha_i|\in\Z_{\geq0}$ is the
+    \textbf{arity} of the operation $\alpha_i$. 
+\end{definition}
+
+For example, let $A$ be a set and 
+$\alpha\colon A^{|\alpha|}\to A$ be a map. If $|\alpha|=0$, 
+then $\alpha$ is a nullary operation. If $|\alpha|=1$, then 
+$\alpha$ is a unary operation. If $|\alpha|=2$, then $\alpha$ is a binary operation. 
+
+\begin{example}
+    A semigroup is a set $A$ with an  
+    operation $A\times A\to A$, $(a,b)\mapsto ab$. Thus 
+    a semigroup 
+    is an algebraic structure.
+\end{example}
+
+Other examples of algebraic structures are 
+monoids, groups, vector spaces. 
+
+\begin{definition}
+\index{Algebraic structures!of the same type}
+    We say that the algebraic structures $(A,(\alpha_i)_{i\in I})$ and $(B,(\beta_i)_{i\in I})$ 
+    have the \textbf{same type} if $|\alpha_i|=|\beta_i|$ for all $i\in I$.
+\end{definition}
+
+\begin{definition}
+\index{Homomorphism}
+    Let $(A,(\alpha_i)_{i\in I})$ and $(B,(\beta_i)_{i\in I})$ be 
+    algebraic structures of the same type. A map $f\colon A\to B$ 
+    is a \textbf{homomorphism} of algebraic structures if 
+    for every $i\in I$ the diagram 
+    \[
+    \begin{tikzcd}
+	{A^{|\alpha_i|}} & A \\
+	{B^{|\beta_i|}} & B
+	\arrow["{\alpha_i}", from=1-1, to=1-2]
+	\arrow["f", from=1-2, to=2-2]
+	\arrow["{f^{|\alpha_i|}}"', from=1-1, to=2-1]
+	\arrow["{\beta_i}"', from=2-1, to=2-2]
+    \end{tikzcd}
+    \]
+    is commutative.     
+\end{definition}
+
+If $f\colon A\to B$ is a map and $X\subseteq A$ is a subset, 
+we write $f|_X$ to denote 
+the restriction of $f$ on $X$, that is the
+map $f\colon X\to B$, $x\mapsto f(x)$. 
+
+\begin{exercise}
+    If $f\colon (A,(\alpha_i)_{i\in I})\to (B,(\beta_i)_{i\in I})$ is
+    a homomorphism, then the \textbf{image}  
+    $\left(\im(f),(\beta_i|_{\im(f)})_{i\in I}\right)$ of $f$ 
+    is an algebraic structure of the same type. 
+\end{exercise}
+
+\begin{definition}
+\index{Congruence}
+    A \textbf{congruence} on 
+    $(A,(\alpha_i)_{i\in I})$ is an equivalence relation $R$ on $A$ 
+    such that for every $i\in I$ one has 
+    \[
+    a_k R b_k\quad\forall k\in\{1,\dots,|\alpha_i|\}\implies \alpha_i(a_1,\dots,a_{|\alpha_i|}) R \alpha_i(b_1,\dots,b_{|\alpha_i|}).
+    \]
+\end{definition}
+
+\begin{exercise}
+Prove the following statements:
+\begin{enumerate}
+    \item If $R$ is a congruence on $(A,(\alpha_i)_{i\in I})$, then 
+    $\left(A/R,(\overline{\alpha_i})_{i\in I}\right)$, 
+    where 
+    \[
+    \overline{\alpha_i}(\overline{a_1},\dots,\overline{a_{|\alpha_i|}})
+    =\overline{\alpha_i(a_1,\dots,a_{|\alpha_i|})},
+    \]
+    is an algebraic structure of the same type. 
+    \item If $f\colon (A,(\alpha_i)_{i\in I})\to (B,(\beta_i)_{i\in I})$ is a homomorphism, 
+    then 
+    \[
+    a(\ker f)b\Longleftrightarrow f(a)=f(b)
+    \]
+    is a congruence. This is known as the \textbf{kernel relation}
+    $\ker f$.  
+    \item Every congruence is a kernel relation. 
+\end{enumerate}
+\end{exercise}
+
+\section{Heaps}
+
+\begin{definition}
+\index{Heap}
+A \textbf{heap} is a set $H$ with a ternary operation $H\times H\times H\to H$, $(x,y,z)\mapsto [x,y,z]$, 
+such that for all $a,b,c,d,e\in H$, 
+\begin{align}
+    &[[a,b,c],d,e]=[a,b,[c,d,e]],\\
+    \label{eq:Malcev}&[a,a,b]=[b,a,a]=b.
+\end{align}
+\end{definition}
+
+Equality \eqref{eq:Malcev} is known as Malcev's identity. 
+
+\begin{definition}
+\index{Heap!abelian}
+    A heap $H$ is \textbf{abelian} if $[a,b,c]=[c,b,a]$ for all $a,b,c\in H$. 
+\end{definition}
+
+Homomorphism of heaps are defined in the usual way. Heaps and heap homomorphism for a category. 
+It will be denoted by $\Hp$. 
+
+The empty set $\emptyset$ is a heap. However, we will only work with non-empty heaps. 
+
+\begin{example}
+\label{exa:H(G)}
+    If $G$ is a group, then $[a,b,c]=ab^{-1}c$ turns $G$ into a heap $H(G)$. Note that
+    the heap $G$ is abelian if and only if $H(G)$ is abelian. Moreover, 
+    if $f\colon G\to G_1$ is a homomorphism of groups, then $H(f)\colon H(G)\to H(G_1)$, $x\mapsto f(x)$, is a 
+    homomorphism of heaps. 
+\end{example}
+
+\begin{example}
+    Let $G$ be a group and $H$ be a subgroup of $G$. For every $a\in G$, the coset
+    $aH=\{ah:h\in H\}$ is a heap with
+    $[ax,ay,az]=axy^{-1}z$. 
+\end{example}
+
+%\index{Groupoid}
+Recall that a \textbf{groupoid} is a small category $\mathcal{C}$ in which every morphism is an isomorphism. 
+We write $\Obj(\mathcal{C})$ to denote the set of objects of $\mathcal{C}$. If $A,B\in\Obj(\mathcal{C})$, 
+then $\mathcal{C}(A,B)$ will be the set of morphisms $A\to B$. 
+
+\begin{example}
+    Let $\mathcal{C}$ be a groupoid and $A,B\in\Obj(\mathcal{C})$. Then $\mathcal{C}(A,B)$ is a heap with
+    $[f,g,h]=f\circ g^{-1}\circ h$. Note that this is well-defined, as
+    \[
+    \begin{tikzcd}
+	A & B & A & B
+	\arrow["h", from=1-1, to=1-2]
+	\arrow["{g^{-1}}", shift left=1, from=1-2, to=1-3]
+	\arrow["f", from=1-3, to=1-4]
+	\arrow["g", shift left=1, from=1-3, to=1-2]
+    \end{tikzcd}
+    \]
+\end{example}
+
+An \textbf{affine space} (over a field $F$) 
+is a set $A$ with a free and transitive action of an $F$-vector space $\overrightarrow{A}$ This means
+that there is a map $A\times\overrightarrow{A}\to A$, $(a,v)\mapsto a+v$, such that 
+the following condition hold:
+\begin{enumerate}
+    \item $a+(v+w)=(a+v)+w$ for all $a\in A$ and $v,w\in\overrightarrow{A}$.
+    \item $a+0=a$ for all $a\in A$.
+    \item For every $a,b\in A$ there exists a unique $\overrightarrow{ab}\in\overrightarrow{A}$ such that
+    $b=a+\overrightarrow{ab}$.
+\end{enumerate}
+
+\begin{example}
+    Let $A$ be an affine space. Then $A$ is an abelian heap with the operation $[a,b,c]=a+\overrightarrow{bc}$. 
+\end{example}
+
+We now summarize the relationship between groups and heaps. Let $\Grp$ denote 
+the category of groups and group homomorphism. 
+
+\begin{theorem}\
+\begin{enumerate}
+    \item The assignment $G\to H(G)$ and $f\mapsto H(f)$ is a functor from $\Grp$ to $\Hp$.
+    \item For any heap $H$ and any $e\in H$, the operation $ab=[a,e,b]$ turns $H$ into a group. 
+    This group is known as the \textbf{retract} 
+    $G(H,e)$ of $H$ at $e$. 
+    \item If $f\colon H\to H'$ is a heap homomorphism, then for all $e\in H$ and $e'\in H'$
+    the maps
+    \begin{align*}
+        &f_e^{e'}\colon G(H,e)\to G(H',e'),&&a\mapsto [f(a),f(e),e'],\\
+        &f_{e'}^{e}\colon G(H,e)\to G(H',e'),&&a\mapsto [e',f(e),f(a)],
+    \end{align*}
+    are group homomorphisms. 
+    \item If $H$ is a heap and $e\in H$, then $H(G(H,e))=H$.
+    \item If $G$ is a group and $x\in G$, then $G(H(G),x)\simeq G$. 
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Sketch of the proof]
+    Routine calculations prove 1), see Exercise \ref{exa:H(G)}. 
+    
+    Let us prove 2). By using \eqref{eq:Malcev} we obtain that $e$ is the identity of $G(H,e)$. For example,
+    $ae=[a,e,e]=a$. If $a\in H$, then $a^{-1}=[e,a,e]$. In fact,
+    \[
+    aa^{-1}=[a,e,a^{-1}]=[a,e,[e,a,e]]=[[a,e,e],a,e]=[a,a,e]=e.
+    \]
+    The associativity is left as an exercise. 
+    
+    3) Let us prove that $f_e^{e_1}$ is a group homomorphism. Let $a,b\in H(G)$. On the one hand,
+    \begin{align*}
+    f_e^{e_1}(ab)&=f_e^{e_1}([a,e,b])\\
+    &=[f([a,e,b]),f(e),e_1]\\
+    &=[[f(a),f(e),f(b)],f(e),e_1]\\
+    &=[f(a),f(e),[f(b),f(e),e_1]].
+    \end{align*}
+    On the other hand, 
+    \begin{align*}
+    f_e^{e_1}(a)f_e^{e_1}(b)&=[f(a),f(e),e_1][f(b),f(e),e_1]\\
+    &=[[f(a),f(e),e_1],e_1,[f(b),f(e),e_1]]\\
+    &=[f(a),f(e),[e_1,e_1,[f(b),f(e),e_1]]\\
+    &=[f(a),f(e),[f(b),f(e),e_1]].
+    \end{align*}
+    The other equality is similar. 
+    
+    We prove 4). We start with a heap $H$. 
+    Fix $e\in H$ and construct the group $G(H,e)$ with
+    multiplication $(x,y)\mapsto xy=[x,e,y]$. Now we construct the heap
+    $H(G(H,e))$ with operation $(a,b,c)\mapsto ab^{-1}c$. Recall that 
+    $b^{-1}=[e,b,e]$. Thus 
+    \begin{align*}
+        ab^{-1}c 
+        &= [ab^{-1}, e, c]
+        = [[a,e,b^{-1}],e,c]\\
+        &= [[a,e,[e,b,e]],e,c]
+        = [[[a,e,e],b,e],e,c]\\
+        &= [[a,b,e],e,c]
+        = [a,b,[e,e,c]]
+        = [a,b,c].
+    \end{align*}
+    
+    To prove 5) use the map $G\to G(H(G),x)$, $a\mapsto ax$. 
+\end{proof}
+
+Let us review some properties of heaps. 
+
+For $n\in\Z_{\geq2}$ let 
+$\Sym_n$ be the symmetric group in $n$ letters. 
+
+\begin{theorem}
+Let $H$ be a heap and $a,b,c,d,e\in H$. Then the following statements hold:
+\begin{enumerate}
+    \item $[a,b,[c,d,e]]=[a,[d,c,b],e]$.
+    \item In $[a,b,c]=d$, any three elements determine the fourth one. 
+    \item $a=b$ if and only if there exists $c\in H$ such that $[a,b,c]=c$ (or equivalently, 
+        if $[a,b,c]=c$ for all $c\in H$). 
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Sketch of the proof]
+We first prove 1). Let $a,b,c,d,e\in H$. Then
+\begin{align*}
+    [a,b,[c,d,e]]=[[a,b,b],b,[c,d,e]]=[[[a,b,b],b,c],d,e]
+    =[[a,[b,b,b],c],d,e]...
+\end{align*}
+
+
+Let us prove 2). Let $a,b,c\in H$ and $d=[a,b,c]$.
+Then
+\[
+...
+\]
+
+We now prove 3). Clearly, if $a=b$, then $[a,b,c]=[a,a,c]=c$ by Malcev's identity. 
+Conversely, assume that $[a,b,c]=c$ for all $c\in H$. In particular, 
+taking $c=b$ and using Malcev's identity one obtains that $a=[a,b,b]=b$. 
+\end{proof}
+
+\begin{exercise}
+    In an abelian heap,
+    \[
+    [x_1,y_1,x_2,y_2,\dots,x_n,y_n,x_{n+1}]=[x_{\sigma(1)},y_{\tau(1)},\dots,x_{\sigma(n)},y_{\tau(n)},x_{\sigma(n+1)}]
+    \]
+    for all $\sigma\in\Sym_{n+1}$ and $\tau\in\Sym_n$. 
+\end{exercise}
+
+The previous exercise and Malcev's identity \eqref{eq:Malcev}
+give a useful trick that avoids painful calculations. 
+Let us do a concrete example. Let $H$ be an abelian heap. Then
+\begin{align*}
+    [x,y,x,y,x]=...
+\end{align*}
+
+\begin{definition}
+    Let $H$ be a heap. 
+    A non-empty subset $S$ of $H$ is a \textbf{subheap} if $[s,s_1,s_2]\in S$ for all 
+    $s,s_1,s_2\in S$. 
+\end{definition}
+
+If $H$ is a heap and $S$ is a subheap of $H$, we define 
+a \textbf{subheap relation} as follows:
+\[
+a\sim_S b\Longleftrightarrow [a,b,s]\in S\text{ for some $s\in S$}.
+\]
+Note that $a\sim_Sb$ if and only if $[a,b,s]\in S$ for all $s\in S$. 
+
+\begin{proposition}
+    Let $H$ be a heap and $S$ be a subheap. Then $\sim_S$ is an equivalence relation. 
+\end{proposition}
+
+\begin{proof}
+    Let $a,b,c\in S$. Then $a\sim_S a$, as $[a,a,a]=a$ by Malcev's identity. 
+    If $a\sim_S b$, then $[a,b,s]\in S$ for some $s\in S$. Thus, since 
+    \[
+    [b,a,[a,b,s]]=[[b,a,a],b,s]=[b,b,s]=s\in S,
+    \]
+    we obtain that $b\sim_S a$. 
+    Finally, assume that $a\sim_S b$ and $b\sim_S c$. We know that 
+    $c\sim_S a$, so 
+    $[c,a,s]\in S$ for some $s\in S$. Thus 
+    \[
+    [a,c,[c,a,s]]=[[a,c,c],a,s]=[a,a,s]=s\in S
+    \]
+    and hence $a\sim_S c$. 
+\end{proof}
+
+\bibliographystyle{plain}
+\bibliography{refs}
+
+%\printindex
+
+\end{document}
