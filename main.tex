@@ -46,6 +46,7 @@
 \spnewtheorem{convention}[theorem]{\conventionname}{\bfseries}{\upshape}
 \spnewtheorem{fact}[theorem]{\factname}{\bfseries}{\upshape}
 
+
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\id}{\mathrm{id}}
 \newcommand{\im}{\operatorname{im}}
@@ -79,7 +80,7 @@
 \maketitle
 
 \abstract{
-An algebraic structure is a collection of sets with operations. Typical and most widespread across mathematics are systems such as a semigroup, monoid, group, ring, field, associative algebra, vector space or module. In this lecture course we will study some simple algebraic systems which have recently gained prominent position in algebra and topology such as braces,  racks or quandles (sets with two operations interacting with  each other in prescribed ways).  In particular we will explore a little known fact (first described nearly 100 years ago by Pruefer and Baer) that one can give a definition of a group without requesting existence of the neutral element and inverses by using a ternary rather than a binary operation (i.e. an operation with three rather than the usual two inputs). A set with such a suitable ternary operation is known as a heap. By picking an element in a heap, the ternary operation is reduced to the binary group operation, for which the chosen element is the neutral element (the resulting group is known as  a retract). We will study properties and examples of heaps and relate them to the properties of corresponding groups (retracts). Next we will look at heaps with an additional binary operation that distributes over the ternary heap operation, known as trusses, relate them to both rings and braces, and study their properties and applications.
+An algebraic structure is a collection of sets with operations. Typical and most widespread across mathematics are systems such as a semigroup, monoid, group, ring, field, associative algebra, vector space or module. In this  course we will study some simple algebraic systems which have recently gained prominent position in algebra and topology such as braces,  racks or quandles (sets with two operations interacting with  each other in prescribed ways).  In particular we will explore a little known fact (first described nearly 100 years ago by Pruefer and Baer) that one can give a definition of a group without requesting existence of the neutral element and inverses by using a ternary rather than a binary operation (i.e. an operation with three rather than the usual two inputs). A set with such a suitable ternary operation is known as a heap. By picking an element in a heap, the ternary operation is reduced to the binary group operation, for which the chosen element is the neutral element (the resulting group is known as  a retract). We will study properties and examples of heaps and relate them to the properties of corresponding groups (retracts). Next we will look at heaps with an additional binary operation that distributes over the ternary heap operation, known as trusses, relate them to both rings and braces, and study their properties and applications.
 }
 
 %{\let\clearpage\relax\tableofcontents}
@@ -97,7 +98,8 @@ Leandro Vendramin. Please send comments and corrections to: \url{Leandro.Vendram
 
 \section{Algebras}
 
-%We start with some basic definitions from universal algebra. 
+We start with some basic definitions from universal algebra. We refer
+to \cite{MR620952} for more details. 
 
 \begin{definition}
 \index{Algebraic structure}
@@ -207,6 +209,7 @@ such that for all $a,b,c,d,e\in H$,
 \end{definition}
 
 Equality \eqref{eq:Malcev} is known as Malcev's identity. 
+%An application of \eqref{eq:Malcev} yields the following result. 
 
 \begin{definition}
 \index{Heap!abelian}
@@ -232,7 +235,6 @@ The empty set $\emptyset$ is a heap. However, we will only work with non-empty h
     $[ax,ay,az]=axy^{-1}z$. 
 \end{example}
 
-%\index{Groupoid}
 Recall that a \textbf{groupoid} is a small category $\mathcal{C}$ in which every morphism is an isomorphism. 
 We write $\Obj(\mathcal{C})$ to denote the set of objects of $\mathcal{C}$. If $A,B\in\Obj(\mathcal{C})$, 
 then $\mathcal{C}(A,B)$ will be the set of morphisms $A\to B$. 
@@ -252,7 +254,7 @@ then $\mathcal{C}(A,B)$ will be the set of morphisms $A\to B$.
 \end{example}
 
 An \textbf{affine space} (over a field $F$) 
-is a set $A$ with a free and transitive action of an $F$-vector space $\overrightarrow{A}$ This means
+is a set $A$ with a free and transitive action of an $F$-vector space $\overrightarrow{A}$. This means
 that there is a map $A\times\overrightarrow{A}\to A$, $(a,v)\mapsto a+v$, such that 
 the following condition hold:
 \begin{enumerate}
@@ -263,13 +265,48 @@ the following condition hold:
 \end{enumerate}
 
 \begin{example}
-    Let $A$ be an affine space. Then $A$ is an abelian heap with the operation $[a,b,c]=a+\overrightarrow{bc}$. 
+    Let $A$ be an affine space. Then $A$ is an abelian 
+    heap with the operation $[a,b,c]=a+\overrightarrow{bc}$. 
+    
+    We first prove Malcev's identities:
+    Clearly, $[a,a,b]=a+\overrightarrow{ab}=b$, as $\overrightarrow{ab}$ is the unique
+    vector that sends $a$ to $b$. Similarly, $[b,a,a]=b$, as $\overrightarrow{aa}=0$. 
+    
+    We claim that
+    $\overrightarrow{a(b+v)}=\overrightarrow{ab}+v$ for all $a,b\in A$ and $v\in\overrightarrow{A}$. 
+    In fact, using Malcev's identities, 
+    \[
+    a+\overrightarrow{a(b+v)}=b+v=(a+\overrightarrow{ab})+v=a+(\overrightarrow{ab}+v).
+    \]
+    Now we compute
+    \begin{align*}
+        [a,b,[c,x,y]] &= [a,b,c+\overrightarrow{xy}]
+        =a+\overrightarrow{b\left(x+\overrightarrow{xy}\right)}\\
+        &=a+\left(\overrightarrow{bc}+\overrightarrow{xy}\right)
+        =\left(a+\overrightarrow{bc}\right)+\overrightarrow{xy}
+        =[[a,b,c],x,y].
+    \end{align*}
+    To prove that the heap is abelian we first note that since 
+    \[
+    a+\left(\overrightarrow{ab}+\overrightarrow{ba}\right)=b+\overrightarrow{ba}=a,
+    \]
+    it follows that $\overrightarrow{ab}+\overrightarrow{ba}=0$. Since
+    \[
+    c=b+\overrightarrow{bc}=\left(a+\overrightarrow{ab}\right)+\overrightarrow{bc},
+    \]
+    it follows that 
+    \[
+    [c,b,a]=c+\overrightarrow{ba}=a+\overrightarrow{ab}+\overrightarrow{bc}+\overrightarrow{ba}
+    =a+\overrightarrow{bc}
+    =[a,b,c].
+    \]
 \end{example}
 
 We now summarize the relationship between groups and heaps. Let $\Grp$ denote 
 the category of groups and group homomorphism. 
 
 \begin{theorem}\
+\label{thm:heaps_and_groups}
 \begin{enumerate}
     \item The assignment $G\to H(G)$ and $f\mapsto H(f)$ is a functor from $\Grp$ to $\Hp$.
     \item For any heap $H$ and any $e\in H$, the operation $ab=[a,e,b]$ turns $H$ into a group. 
@@ -329,10 +366,19 @@ the category of groups and group homomorphism.
         = [a,b,c].
     \end{align*}
     
-    To prove 5) use the map $G\to G(H(G),x)$, $a\mapsto ax$. 
+    To prove 5) recall that $G$ has multiplication $(a,b)\mapsto ab$. 
+    Then $H(G)$ is a heap with $[a,b,c]=ab^{-1}c$ and for $x\in G$, 
+    $G(H(G),x)$ is a group with
+    multiplication $(a,b)\mapsto a\cdot b=[a,x,b]=ax^{-1}b$. The 
+    map $f\colon G\to G(H(G),x)$, $a\mapsto ax$ is a group homomorphism, as 
+    \[
+    f(ab)=(ab)x=(ax)x^{-1}(bx)=f(a)x^{-1}f(b)=f(a)\cdot f(b).
+    \]
+    Moreover, $f$ is bijective with inverse $G(H(G),x)\to G$, $a\mapsto ax^{-1}$. 
 \end{proof}
 
-Let us review some properties of heaps. 
+As an application of Theorem \ref{thm:heaps_and_groups}
+we review some properties of heaps. 
 
 For $n\in\Z_{\geq2}$ let 
 $\Sym_n$ be the symmetric group in $n$ letters. 
@@ -342,29 +388,46 @@ Let $H$ be a heap and $a,b,c,d,e\in H$. Then the following statements hold:
 \begin{enumerate}
     \item $[a,b,[c,d,e]]=[a,[d,c,b],e]$.
     \item In $[a,b,c]=d$, any three elements determine the fourth one. 
-    \item $a=b$ if and only if there exists $c\in H$ such that $[a,b,c]=c$ (or equivalently, 
-        if $[a,b,c]=c$ for all $c\in H$). 
+    \item $a=b$ if and only 
+        if $[a,b,c]=c$ for all $c\in H$. 
 \end{enumerate}
 \end{theorem}
 
-\begin{proof}[Sketch of the proof]
-We first prove 1). Let $a,b,c,d,e\in H$. Then
+\begin{proof}
+We first prove 1). Let $h\in H$. Then $G(H,h)$ is a group
+with $ab=[a,h,b]$ and $H(G(H,h))=H$. Moreover, 
+$xy^{-1}z=[x,y,z]$. On the one hand, 
 \begin{align*}
-    [a,b,[c,d,e]]=[[a,b,b],b,[c,d,e]]=[[[a,b,b],b,c],d,e]
-    =[[a,[b,b,b],c],d,e]...
+    [a,b,[c,d,e]]=ab^{-1}[c,d,e]=ab^{-1}cd^{-1}e
+\end{align*}
+On the other hand,
+\begin{align*}
+    [a,[d,c,b],e]=a[d,c,b]^{-1}e=a(dc^{-1}b)^{-1}e=ab^{-1}cd^{-1}e.
 \end{align*}
 
-
-Let us prove 2). Let $a,b,c\in H$ and $d=[a,b,c]$.
+Let us prove 2). Let $a,b,c\in H$ and $d=[a,b,c]=ab^{-1}c$.
 Then
 \[
-...
+a=dc^{-1}b=[d,c,b],
+\quad
+b=cd^{-1}a=[c,d,a],
+\quad
+c=ba^{-1}d=[b,a,d].
 \]
 
-We now prove 3). Clearly, if $a=b$, then $[a,b,c]=[a,a,c]=c$ by Malcev's identity. 
-Conversely, assume that $[a,b,c]=c$ for all $c\in H$. In particular, 
-taking $c=b$ and using Malcev's identity one obtains that $a=[a,b,b]=b$. 
+To prove 3) note that 
+$a=b$ if and only if $[a,b,c]=ab^{-1}c=c$ for all $c\in H$.
+%Clearly, if $a=b$, then $[a,b,c]=[a,a,c]=c$ by Malcev's identity. 
+%Conversely, assume that $[a,b,c]=c$ for all $c\in H$. In particular, 
+%taking $c=b$ and using Malcev's identity one obtains that $a=[a,b,b]=b$. 
 \end{proof}
+
+\begin{exercise}
+    Let $H$ be a heap and $a,b\in H$. Prove that
+    $a=b$ if and only if there exists $c\in H$ such that 
+    $[a,b,c]=c$.
+\end{exercise}
+
 
 \begin{exercise}
     In an abelian heap,
@@ -375,10 +438,10 @@ taking $c=b$ and using Malcev's identity one obtains that $a=[a,b,b]=b$.
 \end{exercise}
 
 The previous exercise and Malcev's identity \eqref{eq:Malcev}
-give a useful trick that avoids painful calculations. 
-Let us do a concrete example. Let $H$ be an abelian heap. Then
+give a useful trick that avoids painful calculations in the context of abelian heaps. 
+Let us do a concrete example:
 \begin{align*}
-    [x,y,x,y,x]=...
+    [a,b,c,d,b]=[a,b,[c,d,b]]=[a,b,[b,d,c]]=[[a,b,b],d,c]=[a,d,c].
 \end{align*}
 
 \begin{definition}
