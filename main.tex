@@ -96,7 +96,7 @@ interest in (new) algebraic structures.
 Notes by
 Leandro Vendramin. Please send comments and corrections to: \url{Leandro.Vendramin@vub.be} 
 
-\section{Algebras}
+\section{Algebraic structures}
 
 We start with some basic definitions from universal algebra. We refer
 to \cite{MR620952} for more details. 
@@ -276,11 +276,11 @@ the following condition hold:
     $\overrightarrow{a(b+v)}=\overrightarrow{ab}+v$ for all $a,b\in A$ and $v\in\overrightarrow{A}$. 
     In fact, using Malcev's identities, 
     \[
-    a+\overrightarrow{a(b+v)}=b+v=(a+\overrightarrow{ab})+v=a+(\overrightarrow{ab}+v).
+    a+\overrightarrow{a(b+v)}=b+v=\left(a+\overrightarrow{ab}\right)+v=a+\left(\overrightarrow{ab}+v\right).
     \]
     Now we compute
     \begin{align*}
-        [a,b,[c,x,y]] &= [a,b,c+\overrightarrow{xy}]
+        [a,b,[c,x,y]] &= \left[a,b,c+\overrightarrow{xy}\right]
         =a+\overrightarrow{b\left(x+\overrightarrow{xy}\right)}\\
         &=a+\left(\overrightarrow{bc}+\overrightarrow{xy}\right)
         =\left(a+\overrightarrow{bc}\right)+\overrightarrow{xy}
@@ -407,13 +407,14 @@ On the other hand,
 
 Let us prove 2). Let $a,b,c\in H$ and $d=[a,b,c]=ab^{-1}c$.
 Then
-\[
+\begin{align}
+\label{eq:Iknow3}
 a=dc^{-1}b=[d,c,b],
-\quad
+&&
 b=cd^{-1}a=[c,d,a],
-\quad
+&&
 c=ba^{-1}d=[b,a,d].
-\]
+\end{align}
 
 To prove 3) note that 
 $a=b$ if and only if $[a,b,c]=ab^{-1}c=c$ for all $c\in H$.
@@ -475,6 +476,67 @@ Note that $a\sim_Sb$ if and only if $[a,b,s]\in S$ for all $s\in S$.
     [a,c,[c,a,s]]=[[a,c,c],a,s]=[a,a,s]=s\in S
     \]
     and hence $a\sim_S c$. 
+\end{proof}
+
+Let $H$ be a heap and $S\subseteq H$ be a subheap. For $a\in H$ 
+the orbit of $a$ is the set
+\[
+\overline{a}=\{c\in H:c\sim_S a\}
+\]
+We write $H/S$ to denote the set
+of equivalence classes.
+
+\begin{theorem}
+    Let $H$ be a heap and $S$ be a subheap of $H$. The following statements hold:
+    \begin{enumerate}
+        \item For every $s\in S$, $\overline{s}=S$. 
+        \item For every $a\in H$, $\overline{a}$ is a subheap of $H$.
+        \item For every $a,b\in H$, 
+        the map
+        \[
+        \tau_b^a\colon H\to H,\quad
+        c\mapsto [c,b,a],
+        \]
+        is an automorphism of heaps. 
+        \item For every $a,b\in H$, 
+        $\overline{a}\simeq\overline{b}$ as heaps. 
+        \item For every $a\in H$...
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Let us first prove 1). Let $s\in S$. To prove that 
+    $\overline{s}\subseteq S$ let 
+    $a\in H$ be such that $a\sim_Ss$. Then 
+    $[a,s,t]=u\in S$ for some $t\in S$. By \eqref{eq:Iknow3}, 
+    $a=[u,t,s]\in S$, as $S$ is a subheap. Conversely, 
+    if $a\in S$, then, in particular, $[a,s,s]\in S$. Thus 
+    $a\sim_Ss$. 
+
+    We now prove 2)...
+    Let $a\in H$. 
+
+    Let us prove 3). On the one hand,
+    \[
+    \tau_b^a([x,y,z])=[[x,y,z],b,a]]=[x,y,[z,b,a]].
+    \]
+    On the other hand, using Theorem \ref{thm:heaps_and_groups}
+    and Malcev's identities:
+    \begin{align*}
+        [\tau_b^a(x),\tau_b^a(y),\tau_b^a(z)] &= 
+        [[x,b,a],[y,b,a],[z,b,a]]\\
+        &=[x,b,[a,[y,b,a],[z,b,a]]\\
+        &=[x,b,[a,[a,b,y],[z,b,a]]\\
+        &=[x,b,[[a,a,b],[y,[z,b,a]]\\
+        &=[[x,b,b],[y,[z,b,a]]\\
+        &=[x,y,[z,b,a]].
+    \end{align*}
+    The map $\tau_b^a$ is bijective with inverse $\tau_a^b$, as
+    for example
+    \[
+    \tau_b^a\tau_a^b(c)
+    =\tau_b^a([c,a,b])=[c,b,[b,b,a]]=[c,a,a]=c.
+    \]
 \end{proof}
 
 \bibliographystyle{plain}
