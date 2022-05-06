@@ -451,6 +451,7 @@ if $[a,b,c]=c$ for all $c\in H$, in particular, $a=[a,b,b]=b$ by Malcev's identi
 \end{exercise}
 
 \begin{exercise}
+\label{xca:abelian}
     In an abelian heap,
     \[
     [x_1,y_1,x_2,y_2,\dots,x_n,y_n,x_{n+1}]=[x_{\sigma(1)},y_{\tau(1)},\dots,x_{\sigma(n)},y_{\tau(n)},x_{\sigma(n+1)}]
@@ -717,19 +718,33 @@ We now discuss universal differences between heaps and groups.
 \end{definition}
 
 \begin{example}
-    The set $2\Z+1$ is a truss with
+    The set $2\Z+1=\{2m+1:m\in\Z\}$ is a truss with
+    the usual multiplication and $[x,y,z]=x-y+z$.
 \end{example}
 
 \begin{example}
-    $\frac{2\Z+1}{2\Z+1}$. 
+    The set 
+    \[
+    \frac{2\Z+1}{2\Z+1}=\left\{\frac{a}{b}:a,b\text{ odd integers}\right\}
+    \]
+    is a truss with the usual multiplication
+    and $[x,y,z]=x-y+z$. Note that both operations are well-defined. 
 \end{example}
 
 \begin{example}
     Let $H$ be an abelian heap. The set $\End(H)$ of heap endomorphisms $H\to H$
-    is a truss with
+    is an abelian heap with 
     \[
-    [f,g,h](a)=[f(a),g(a),h(a)]
+    [f,g,h](a)=[f(a),g(a),h(a)].
     \]
+    We prove that the operation is well-defined. Since $H$ is abelian, 
+    we can use Exercise \ref{xca:abelian} to obtain that  
+    \begin{align*}
+        [f,g,h]\left([a,b,c]\right) &= \left[ f([a,b,c]), g([a,b,c]), h([a,b,c]) \right]\\
+        &=\left[ [f(a),f(b),f(c)], [g(a),g(b),g(c)], [h(a),h(b),h(c)]\right]\\
+        &=\left[ [f(a),g(a),h(a)], [f(b),g(b),h(b)], [f(c),g(c),h(c)]\right]\\
+        &=\left[ [f,g,h](a), [f,g,h](b), [f,g,h](c)\right].
+    \end{align*}
 \end{example}
 
 Let $F$ be a field. An associative $F$-algebra is an $F$-vector space $A$ 
