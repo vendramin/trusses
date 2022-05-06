@@ -203,7 +203,7 @@ Prove the following statements:
 A \textbf{heap} is a set $H$ with a ternary operation $H\times H\times H\to H$, $(x,y,z)\mapsto [x,y,z]$, 
 such that for all $a,b,c,d,e\in H$, 
 \begin{align}
-    &[[a,b,c],d,e]=[a,b,[c,d,e]],\\
+    \label{eq:associativity}&[[a,b,c],d,e]=[a,b,[c,d,e]],\\
     \label{eq:Malcev}&[a,a,b]=[b,a,a]=b.
 \end{align}
 \end{definition}
@@ -377,15 +377,18 @@ the category of groups and group homomorphism.
     Moreover, $f$ is bijective with inverse $G(H(G),x)\to G$, $a\mapsto ax^{-1}$. 
 \end{proof}
 
-As an application of Theorem \ref{thm:heaps_and_groups}
-we review some properties of heaps. 
+As an application of Theorem \ref{thm:heaps_and_groups} we can quickly prove
+the several properties of heaps. However, we will 
+present heap-theoretic proofs. 
 
 For $n\in\Z_{\geq2}$ let 
 $\Sym_n$ be the symmetric group in $n$ letters. 
 
 \begin{theorem}
+\label{thm:properties}
 Let $H$ be a heap and $a,b,c,d,e\in H$. Then the following statements hold:
 \begin{enumerate}
+    \item If $[a,b,c]=d$, then $a=[d,c,b]$. 
     \item $[a,b,[c,d,e]]=[a,[d,c,b],e]$.
     \item In $[a,b,c]=d$, any three elements determine the fourth one. 
     \item $a=b$ if and only 
@@ -394,41 +397,57 @@ Let $H$ be a heap and $a,b,c,d,e\in H$. Then the following statements hold:
 \end{theorem}
 
 \begin{proof}
-We first prove 1). Let $h\in H$. Then $G(H,h)$ is a group
-with $ab=[a,h,b]$ and $H(G(H,h))=H$. Moreover, 
-$xy^{-1}z=[x,y,z]$. On the one hand, 
-\begin{align*}
-    [a,b,[c,d,e]]=ab^{-1}[c,d,e]=ab^{-1}cd^{-1}e
-\end{align*}
-On the other hand,
-\begin{align*}
-    [a,[d,c,b],e]=a[d,c,b]^{-1}e=a(dc^{-1}b)^{-1}e=ab^{-1}cd^{-1}e.
-\end{align*}
+Let us start with 1). Using \eqref{eq:associativity} and \eqref{eq:Malcev}, 
+\[
+a=[a,b,b]=[a,b,[c,c,b]]=[[a,b,c],c,b]=[d,c,b].
+\]
 
-Let us prove 2). Let $a,b,c\in H$ and $d=[a,b,c]=ab^{-1}c$.
-Then
-\begin{align}
+We now prove 2). Let $a,b,c,d,e\in H$. Then \eqref{eq:associativity} and \eqref{eq:Malcev} imply that
+\begin{align*}
+    a=[[a,b,c],c,b]=\left[[[a,b,c],d,d],c,b\right]=\left[[a,b,c],d,[d,c,b]\right].
+\end{align*}
+Using 1) and Malcev's identities we obtain that
+\[
+[a,b,c]=\left[a,[d,c,b],d\right]=\left[a,[d,c,b],[e,e,d]\right]=\left[[a,[d,c,b],e],e,d\right].
+\]
+Again by using 1) we conclude that
+\[
+[a,[d,c,b],e]=\left[[a,b,c],d,e\right].
+\]
+
+%Let $h\in H$. Then $G(H,h)$ is a group
+%with $ab=[a,h,b]$ and $H(G(H,h))=H$. Moreover, 
+%$xy^{-1}z=[x,y,z]$. On the one hand, 
+%\begin{align*}
+%    [a,b,[c,d,e]]=ab^{-1}[c,d,e]=ab^{-1}cd^{-1}e
+%\end{align*}
+%On the other hand,
+%\begin{align*}
+%    [a,[d,c,b],e]=a[d,c,b]^{-1}e=a(dc^{-1}b)^{-1}e=ab^{-1}cd^{-1}e.
+%\end{align*}
+
+Let us prove 3). Let $a,b,c\in H$ and $d=[a,b,c]$. In 1) 
+we obtained that $a=[d,c,b]$. Similarly,  
+\begin{align*}
 \label{eq:Iknow3}
-a=dc^{-1}b=[d,c,b],
-&&
-b=cd^{-1}a=[c,d,a],
-&&
-c=ba^{-1}d=[b,a,d].
-\end{align}
+c=[b,b,c]=[[b,a,a],b,c]=[b,a,[a,b,c]]=[b,a,d].
+\end{align*}
+Now using 2) we obtain
+\[
+b=[b,a,a]=[c,c,[b,a,a]]=[c,[a,b,c],a]=[c,d,a].
+\]
 
-To prove 3) note that 
-$a=b$ if and only if $[a,b,c]=ab^{-1}c=c$ for all $c\in H$.
-%Clearly, if $a=b$, then $[a,b,c]=[a,a,c]=c$ by Malcev's identity. 
-%Conversely, assume that $[a,b,c]=c$ for all $c\in H$. In particular, 
-%taking $c=b$ and using Malcev's identity one obtains that $a=[a,b,b]=b$. 
+To prove 4) note that, if $a=b$, then $[a,b,c]=[a,a,c]=c$ for all $c\in H$ 
+by Malcev's identity. Conversely,
+if $[a,b,c]=c$ for all $c\in H$, in particular, $a=[a,b,b]=b$ by Malcev's identity. 
 \end{proof}
 
 \begin{exercise}
+\label{xca:equality}
     Let $H$ be a heap and $a,b\in H$. Prove that
     $a=b$ if and only if there exists $c\in H$ such that 
     $[a,b,c]=c$.
 \end{exercise}
-
 
 \begin{exercise}
     In an abelian heap,
@@ -500,7 +519,7 @@ of equivalence classes.
         is an automorphism of heaps. 
         \item For every $a,b\in H$, 
         $\overline{a}\simeq\overline{b}$ as heaps. 
-        \item For every $a\in H$...
+        \item For every $a\in H$, $\sim_S=\sim_{\overline{a}}$. 
     \end{enumerate}
 \end{theorem}
 
@@ -508,14 +527,21 @@ of equivalence classes.
     Let us first prove 1). Let $s\in S$. To prove that 
     $\overline{s}\subseteq S$ let 
     $a\in H$ be such that $a\sim_Ss$. Then 
-    $[a,s,t]=u\in S$ for some $t\in S$. By \eqref{eq:Iknow3}, 
+    $[a,s,t]=u\in S$ for some $t\in S$. By Theorem \ref{thm:properties}, 
     $a=[u,t,s]\in S$, as $S$ is a subheap. Conversely, 
     if $a\in S$, then, in particular, $[a,s,s]\in S$. Thus 
     $a\sim_Ss$. 
 
-    We now prove 2)...
-    Let $a\in H$. 
-
+    We now prove 2). Let $x,y,z\in S$ be such that $x,y,z\in\overline{a}$. 
+    Since $x\sim_Sa$ and $y\sim_Sa$, it follows that 
+    $x\sim_Sy$, so there exists $s\in S$ such that $[x,y,s]\in S$.
+    Since  
+    \[
+    [[x,y,z],z,s]=[x,y,[z,z,s]]=[x,y,s]\in S, 
+    \]
+    one has $[x,y,z]\sim_Sz$. Now the claim follows since 
+    $z\sim_Sa$.
+    
     Let us prove 3). On the one hand,
     \[
     \tau_b^a([x,y,z])=[[x,y,z],b,a]]=[x,y,[z,b,a]].
@@ -531,13 +557,131 @@ of equivalence classes.
         &=[[x,b,b],[y,[z,b,a]]\\
         &=[x,y,[z,b,a]].
     \end{align*}
-    The map $\tau_b^a$ is bijective with inverse $\tau_a^b$, as
-    for example
+    The map $\tau_b^a$ is bijective with inverse $\tau_a^b$, as, 
+    for example, 
     \[
     \tau_b^a\tau_a^b(c)
-    =\tau_b^a([c,a,b])=[c,b,[b,b,a]]=[c,a,a]=c.
+    =\tau_b^a([c,a,b])=[[c,a,b],b,a]=[c,a,[b,b,a]]=[c,a,a]=c.
     \]
+    
+    4) Let $a,b\in H$. The map $\tau_a^b$ is an automorphism of heaps
+    such that $\tau_a^b(a)=b$. We claim that 
+    $\tau_a^b(\overline{a})=\overline{b}$. Let $x\in H$ be such that 
+    $x\sim_Sa$. In particular, $a\sim_Sx$, so 
+    $[a,x,s]\in S$ for some $s\in S$. Now 
+    $\tau_a^b(x)\sim_Sb$, as 
+    \begin{align*}
+    \left[\tau_a^b(x),b,[a,x,s]\right]&=\left[[x,a,b],b,[a,x,s]\right]\\
+    &=\left[x,a,[b,b,[a,x,s]\right]
+    =\left[x,a,[a,x,s]\right]=s\in S.
+    \end{align*}
+    
+    5) Assume first that $x\sim_{\overline{a}}y$. Then there exists $b\in\overline{a}$ 
+    such that $[x,y,b]\sim_Sa$. Since $[x,y,b]\sim_Sa$ and $b\sim_Sa$, it follows
+    that $[x,y,b]\sim_Sb$. Thus there exists $s\in S$
+    such that 
+    \[
+    [x,y,s]=[x,y,[b,b,s]]=[[x,y,b],b,s]\in S.
+    \]
+    That is $x\sim_Sy$. Conversely, assume now that $x\sim_Sy$. Then 
+    there exists $s\in S$ such that 
+    \[
+    [[x,y,b],b,s]=[x,y,[b,b,s]]=[x,y,s]\in S.
+    \]
+    Let $b\in\overline{a}$. Since $[x,y,b]\sim_Sb$, it follows that 
+    $[x,y,b]\sim_Sa$ and hence $x\sim_{\overline{a}}y$. 
 \end{proof}
+
+\begin{definition}
+    A subheap $S$ of $H$ is \textbf{normal} if 
+    for every $a\in H$ and $s,e\in S$ there exists 
+    $t\in S$ such that $[a,e,s]=[t,e,a]$.
+\end{definition}
+
+Note a subheap $S$ of $H$ is normal if and only if 
+    for every $a\in H$ and $s,e\in H$ one has 
+    $[[a,e,s],a,e]\in S$.  
+
+\begin{exercise}
+    Prove that a subheap $S$ of $H$ is normal if and only if 
+    $S$ is a normal subgroup of $G(H,e)$ for every $e\in S$. 
+\end{exercise}
+
+\begin{theorem}
+    Let $f\colon H\to K$ be a homomorphism of heaps. For $c\in H$
+    let 
+    \[
+    \overline{c}=\{b\in H:f(b)=f(c)\}
+    \]
+    be the equivalence class of $c$ with respect to $\ker(f)$. 
+    Then $\overline{c}$ is a subheap of $H$.  
+\end{theorem}
+
+\begin{proof}
+    To prove that $\overline{c}$ is a subheap first note that 
+    $c\in\overline{c}$, so $\overline{c}$ is non-empty. 
+    Now let $x,y,z\in\overline{c}$. 
+    Then $f(x)=f(y)=f(z)=$ 
+    $[x,y,z]\in\overline{c}$, as
+    \[
+    f([x,y,z])=[f(x),f(y),f(z)]=[f(c),f(c),f(c)]=f(c).
+    \]
+    
+    To prove that $\overline{c}$ is normal let $x,y\in\overline{c}$ and $a\in H$. 
+    Since $f(x)=f(y)=f(c)$, 
+    \begin{align*}
+        f\left(\left[[x,y,s],x,y]\right]\right)&=\left[[f(a),f(x),f(y)],f(a),f(x)\right]\\ 
+        &=\left[[f(a),f(c),f(c)],f(a),f(c)\right]\\
+        &=[f(a),f(a),f(c)]=f(c).\qedhere
+    \end{align*}
+\end{proof}
+
+\begin{definition}
+    Let $f\colon H\to K$ be a homomorphism of heaps. Let $e\in f(H)$. 
+    An $e$-kernel of $f$ is defined as the set
+    \[
+    \ker_ef=\{a\in H:f(a)=e\}
+    \]
+\end{definition}
+
+\begin{theorem}
+    Let $f\colon H\to K$ be a homomorphism of heaps and $e\in f(H)$. 
+    \begin{enumerate}
+        \item $\ker_ef$ is a normal subheap of $H$. 
+        \item $a\sim_{\ker_ef}b$ if and only if $f(a)=f(b)$. 
+        \item For every $e,e_1\in f(H)$, $\ker_ef\simeq\ker_{e_1}f$. 
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Let us prove 1). By definition, $\ker_ef$ is non-empty. If $x,y,z\in\ker_ef$, then 
+    $f(x)=f(y)=f(z)=e$. Since $f$ is a heap homomorphism, 
+    \[
+    f([x,y,z])=[f(x),f(y),f(z)]=[e,e,e]=e
+    \]
+    and hence $[x,y,z]\in\ker_ef$. To prove that $\ker_ef$ is normal
+    note that
+    \[
+    f\left(\left[ [a,x,y],a,x\right]\right)
+    =\left[ [f(a),f(x),f(y)],f(a),f(x)\right]
+    =\left[ [f(a),e, e],f(a),e\right]=e.
+    \]
+    
+    Now we prove 2). Let $S=\ker_ef$. Then 
+    \begin{align*}
+        a\sim_Sb &\Longleftrightarrow [a,b,s]\in S\text{ for some $s\in S$}\\
+        & \Longleftrightarrow f([a,b,s])=e\text{ for some $s\in H$ such that $f(s)=e$}\\
+        & \Longleftrightarrow [f(a),f(b),e]=e\\
+        & \Longleftrightarrow f(a)=f(b),
+    \end{align*}
+    by Exercise \ref{xca:equality}. 
+    
+    Finally we prove 3). 
+\end{proof}
+
+\begin{corollary}
+    Every congruence of heaps is a subheap relation with respect to a normal subheap.  
+\end{corollary}
 
 \bibliographystyle{plain}
 \bibliography{refs}
