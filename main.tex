@@ -49,9 +49,10 @@
 
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\id}{\mathrm{id}}
-\newcommand{\im}{\operatorname{im}}
+\newcommand{\im}{\operatorname{img}}
 \newcommand{\Obj}{\operatorname{Obj}}
 \newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\End}{\operatorname{End}}
 
 \newcommand{\category}[1]{{\normalfont\textbf{#1}}}
 \newcommand{\Grp}{\category{Grp}}
@@ -637,7 +638,7 @@ Note a subheap $S$ of $H$ is normal if and only if
 \end{proof}
 
 \begin{definition}
-    Let $f\colon H\to K$ be a homomorphism of heaps. Let $e\in f(H)$. 
+    Let $f\colon H\to K$ be a homomorphism of heaps and $e\in f(H)$. 
     An $e$-kernel of $f$ is defined as the set
     \[
     \ker_ef=\{a\in H:f(a)=e\}
@@ -676,12 +677,102 @@ Note a subheap $S$ of $H$ is normal if and only if
     \end{align*}
     by Exercise \ref{xca:equality}. 
     
-    Finally we prove 3). 
+    Finally we prove 3). Let $x,y\in H$ be such that $f(x)=e$ and $f(y)=e_1$. 
+    Note that
+    \[
+    \ker_ef=\{a\in H:f(a)=e\}=\{a\in H:f(a)=f(x)\}=\overline{x}
+    \]
+    Similarly, $\ker_{e_1}f=\overline{y}$. We know that both $\overline{x}$ and
+    $\overline{y}$ are subheaps of $H$. They are isomorphic, 
+    as $\tau_x^y(\overline{x})=\overline{y}$. In fact, if $z\in\overline{x}$, 
+    then $\tau_x^y(z)\in\overline{y}$, as 
+    \[
+    f(\tau_x^y(z))=f([z,x,y])=[f(z),f(x),f(y)]=[f(x),f(x),f(y)]=f(y).\qedhere 
+    \]
 \end{proof}
+
+We leave the proof of the following result as an exercise. 
 
 \begin{corollary}
     Every congruence of heaps is a subheap relation with respect to a normal subheap.  
 \end{corollary}
+
+We now discuss universal differences between heaps and groups. 
+
+\begin{definition}
+    Let $X$ be a set. A \textbf{free heap}... 
+\end{definition}
+
+\section{Trusses}
+
+\begin{definition}
+    A left (resp. right) \textbf{skew truss} is a heap $(T,[-,-,-])$ 
+    with an associative binary operation 
+    such that 
+    \[
+    a[b,c,d]=[ab,ac,ad]\qquad\text{(resp. $[a,b,c]d=[ad,bd,cd]$).}
+    \]
+    If $T$ is an abelian heap, then we drop skew from the terminology. A \textbf{truss}
+    is a left and right truss. 
+\end{definition}
+
+\begin{example}
+    The set $2\Z+1$ is a truss with
+\end{example}
+
+\begin{example}
+    $\frac{2\Z+1}{2\Z+1}$. 
+\end{example}
+
+\begin{example}
+    Let $H$ be an abelian heap. The set $\End(H)$ of heap endomorphisms $H\to H$
+    is a truss with
+    \[
+    [f,g,h](a)=[f(a),g(a),h(a)]
+    \]
+\end{example}
+
+Let $F$ be a field. An associative $F$-algebra is an $F$-vector space $A$ 
+with a bilinear associative multiplication. In particular, $A$ is a ring. What if $A$ is replaced by 
+an affine space?
+
+\begin{example}
+    Let $F$ be a field...
+    $F$ acts on $A$ by $(\lambda,a,b)\mapsto a+\lambda\overrightarrow{ab}$. An affine
+    transformation is a pair $\left(f,\overrightarrow{f}\right)$, where 
+    $f\colon A\to B$ is a map and $\overrightarrow{f}\colon \overrightarrow{A}\to\overrightarrow{B}$ is a linear
+    transformation such that 
+    \[
+    \overrightarrow{f}\left(\overrightarrow{ab}\right)=\overrightarrow{f(a)f(b)}
+    \]
+    An affine space with an $F$-affine multiplication is a truss... 
+\end{example}
+
+\begin{example}
+    A (left) skew ring is a (left) truss
+    with
+    \[
+    a[b,c,d]=a(b-c+d)=ab-ac+ad=[ab,ac,ad].
+    \]
+\end{example}
+
+A (left) skew brace is a triple $(A,+,\circ)$, where $(A,+)$ and $(A,\circ)$ are
+groups and $a\circ(b+c)=a\circ b-a+a\circ c$ holds for all $a,b,c\in A$. 
+
+\begin{proposition}
+    Let $B$ be a skew brace. Then $(B,+)$ is a heap
+    and $(H(B),\circ)$ is a skew truss. 
+\end{proposition}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{example}
+    A skew left truss is a skew...
+    $a+b=[a,1,b]$. 
+    $G(T,1)$ is a skew brace. 
+\end{example}
 
 \bibliographystyle{plain}
 \bibliography{refs}
