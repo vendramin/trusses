@@ -1,4 +1,4 @@
-# trusses
+# Trusses: between braces and rings
 
 The notes correspond to a 8-hours mini-course 
 taught by Prof. Tomasz Brzezinski at the 
