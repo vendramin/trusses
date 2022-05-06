@@ -472,6 +472,11 @@ Let us do a concrete example:
     $s,s_1,s_2\in S$. 
 \end{definition}
 
+\begin{exercise}
+    Let $H$ be a heap, $e\in H$ and $S$ be a non-empty subset of $H$. 
+    Prove that $S$ is a subheap if and only if $S$ is a subgroup of $G(H,e)$. 
+\end{exercise}
+
 If $H$ is a heap and $S$ is a subheap of $H$, we define 
 a \textbf{subheap relation} as follows:
 \[
@@ -596,14 +601,14 @@ of equivalence classes.
 
 \begin{definition}
     A subheap $S$ of $H$ is \textbf{normal} if 
-    for every $a\in H$ and $s,e\in S$ there exists 
-    $t\in S$ such that $[a,e,s]=[t,e,a]$.
+    for every $a\in H$ and $s,e\in H$ one has 
+    $[[a,e,s],a,e]\in S$.  
 \end{definition}
 
 Note a subheap $S$ of $H$ is normal if and only if 
-    for every $a\in H$ and $s,e\in H$ one has 
-    $[[a,e,s],a,e]\in S$.  
-
+for every $a\in H$ and $s,e\in S$ there exists 
+$t\in S$ such that $[a,e,s]=[t,e,a]$.
+    
 \begin{exercise}
     Prove that a subheap $S$ of $H$ is normal if and only if 
     $S$ is a normal subgroup of $G(H,e)$ for every $e\in S$. 
@@ -642,7 +647,7 @@ Note a subheap $S$ of $H$ is normal if and only if
     Let $f\colon H\to K$ be a homomorphism of heaps and $e\in f(H)$. 
     An $e$-kernel of $f$ is defined as the set
     \[
-    \ker_ef=\{a\in H:f(a)=e\}
+    \ker_ef=\{a\in H:f(a)=e\}.
     \]
 \end{definition}
 
@@ -708,7 +713,7 @@ We now discuss universal differences between heaps and groups.
 
 \begin{definition}
     A left (resp. right) \textbf{skew truss} is a heap $(T,[-,-,-])$ 
-    with an associative binary operation 
+    with an associative binary operation $(x,y)\mapsto xy$ 
     such that 
     \[
     a[b,c,d]=[ab,ac,ad]\qquad\text{(resp. $[a,b,c]d=[ad,bd,cd]$).}
@@ -745,6 +750,11 @@ We now discuss universal differences between heaps and groups.
         &=\left[ [f(a),g(a),h(a)], [f(b),g(b),h(b)], [f(c),g(c),h(c)]\right]\\
         &=\left[ [f,g,h](a), [f,g,h](b), [f,g,h](c)\right].
     \end{align*}
+    Moreover, $\End(H)$ is a truss with the usual composition:
+    \begin{align*}
+    &[f,g,h]\circ k(a)=[f(k(a)),g(k(a),h(k(a))],\\
+    &f\circ [h,g,k](a)=f([g(a),h(a),k(a)])=[fg(a),fh(a),fk(a)].
+    \end{align*}
 \end{example}
 
 Let $F$ be a field. An associative $F$-algebra is an $F$-vector space $A$ 
@@ -775,12 +785,14 @@ A (left) skew brace is a triple $(A,+,\circ)$, where $(A,+)$ and $(A,\circ)$ are
 groups and $a\circ(b+c)=a\circ b-a+a\circ c$ holds for all $a,b,c\in A$. 
 
 \begin{proposition}
-    Let $B$ be a skew brace. Then $(B,+)$ is a heap
-    and $(H(B),\circ)$ is a skew truss. 
+    \begin{enumerate}
+        \item If we view a group $(B,+)$ as a heap $H(B)$, then $H(B)$ is a left skew truss.
+        \item Any left skew truss...
+    \end{enumerate}  
 \end{proposition}
 
 \begin{proof}
-
+    
 \end{proof}
 
 \begin{example}
