@@ -716,21 +716,21 @@ W(X)=\{x_1\cdots x_{2n+1}:n\geq1,\,x_1,\dots,x_{2n+1}\in X,\,x_i\ne x_{i+1}\text
 For a word $x_1\cdots x_{2n+1}$ the opposite 
 word is 
 \[
-(x_1\cdots x_{2n+1})^{\operatorname{op}}=x_{2n+1}\cdots x_2x_1.
+(x_1\cdots x_{2n+1})^{\operatorname{t}}=x_{2n+1}\cdots x_2x_1.
 \]
 On $W(X)$ we define a ternary operation $[-,-,-]$ by \emph{grafting and pruning}:
 if $u,v,w\in W(X)$, then $[u,v,w]$ is obtained by removing (or pruning) all 
-pairs of consecutive equal letters from $uv^{\operatorname{op}}w$ (obtained by
-concatenation (or grafting) of $u$, $v^{\operatorname{op}}$ and $w$. One
+pairs of consecutive equal letters from $uv^{\operatorname{t}}w$ (obtained by
+concatenation (or grafting) of $u$, $v^{\operatorname{t}}$ and $w$. One
 proves that $\left(W(X),[-,-,-]\right)$ is a heap. It is the \textbf{free heap} on 
-$X$ and it will be denoted by $H(X)$. 
+$X$ and it will be denoted by $\mathcal{H}(X)$. 
 
 \begin{definition}
-    Let $X$ be a set. A \textbf{free heap} on $H(X)$ is a heap with with the following
+    Let $X$ be a set. A \textbf{free heap} on $\mathcal{H}(X)$ is a heap with with the following
     property: for any heap $H$ and any map $f\colon X\to H$ there exists a unique
-    heap homomorphism $\varphi\colon H(X)\to H$ such that
+    heap homomorphism $\varphi\colon \mathcal{H}(X)\to H$ such that
 \[\begin{tikzcd}
-	X & {H(X)} \\
+	X & {\mathcal{H}(X)} \\
 	H
 	\arrow["\iota", from=1-1, to=1-2]
 	\arrow["f"', from=1-1, to=2-1]
@@ -740,11 +740,11 @@ $X$ and it will be denoted by $H(X)$.
 \end{definition}
 
 \begin{example}
-        $H(\{x\})=\{x\}$.
+        $\mathcal{H}(\{x\})=\{x\}$.
 \end{example}
 
 \begin{example}
-        $H(\{x,y\})\simeq H(\Z)$. In fact, $x\mapsto 0$ and
+        $\mathcal{H}(\{x,y\})\simeq \mathcal{H}(\Z)$ via $x\mapsto 0$ and
         \[
         \underbrace{xyx\cdots yx}_{\text{$n$-times $y$}}\mapsto -n,
         \quad
@@ -753,8 +753,23 @@ $X$ and it will be denoted by $H(X)$.
 \end{example}
 
 \begin{example}
-    
+    Let $X$ be a set. The \textbf{free abelian heap} $\mathcal{A}(X)$ 
+    is defined as the free heap $\mathcal{H}(X)$ on $X$ modulo
+    the action of 
+    $\bigcup_{n}\Sym_{n+1}\times\Sym_n$ given by 
+    \[
+    (\sigma,\tau)\cdot x_1y_1x_2y_2\cdots x_ny_nx_{n+1}
+    =x_{\sigma(1)}y_{\tau(1)}x_{\sigma(2)}y_{\tau(2)}\cdots x_{\sigma(n)}y_{\sigma(n)}x_{\sigma(n+1)}
+    \]
+    for $\sigma\in\Sym_{n+1}$ and $\tau\in\Sym_{n}$. 
 \end{example}
+
+We now describe the \textbf{direct sum} (or coproduct) $H_1\boxtimes H_2$ of the 
+abelian heaps $H_1$ and $H_2$. Let $U$ be the disjoiunt union of $H_1$ and $H_2$ and
+$\mathcal{A}(U)$ be the free abelian heap on $U$...
+\[
+H_1\boxtimes H_2=\mathcal{H}\left(G(H_1,e_1)\oplus G(H_2,e_2)\oplus\Z\right)
+\]
 
 \section{Trusses}
 
