@@ -705,9 +705,56 @@ We leave the proof of the following result as an exercise.
 
 We now discuss universal differences between heaps and groups. 
 
+Let $X$ be a non-empty set. The set $W(X)$ of reduced words on $X$ 
+is defined as the set of words 
+$x_1\cdots x_{2n+1}$ in elements of $X$ of odd length such that no
+consecutive letters are the same, i.e. 
+\[
+W(X)=\{x_1\cdots x_{2n+1}:n\geq1,\,x_1,\dots,x_{2n+1}\in X,\,x_i\ne x_{i+1}\text{ for all $i$}\}
+\]
+
+For a word $x_1\cdots x_{2n+1}$ the opposite 
+word is 
+\[
+(x_1\cdots x_{2n+1})^{\operatorname{op}}=x_{2n+1}\cdots x_2x_1.
+\]
+On $W(X)$ we define a ternary operation $[-,-,-]$ by \emph{grafting and pruning}:
+if $u,v,w\in W(X)$, then $[u,v,w]$ is obtained by removing (or pruning) all 
+pairs of consecutive equal letters from $uv^{\operatorname{op}}w$ (obtained by
+concatenation (or grafting) of $u$, $v^{\operatorname{op}}$ and $w$. One
+proves that $\left(W(X),[-,-,-]\right)$ is a heap. It is the \textbf{free heap} on 
+$X$ and it will be denoted by $H(X)$. 
+
 \begin{definition}
-    Let $X$ be a set. A \textbf{free heap}... 
+    Let $X$ be a set. A \textbf{free heap} on $H(X)$ is a heap with with the following
+    property: for any heap $H$ and any map $f\colon X\to H$ there exists a unique
+    heap homomorphism $\varphi\colon H(X)\to H$ such that
+\[\begin{tikzcd}
+	X & {H(X)} \\
+	H
+	\arrow["\iota", from=1-1, to=1-2]
+	\arrow["f"', from=1-1, to=2-1]
+	\arrow["{\varphi }", dashed, from=1-2, to=2-1]
+\end{tikzcd}\]
+    commutes, where $\iota$ denotes the inclusion $X\to W(X)$. 
 \end{definition}
+
+\begin{example}
+        $H(\{x\})=\{x\}$.
+\end{example}
+
+\begin{example}
+        $H(\{x,y\})\simeq H(\Z)$. In fact, $x\mapsto 0$ and
+        \[
+        \underbrace{xyx\cdots yx}_{\text{$n$-times $y$}}\mapsto -n,
+        \quad
+        \underbrace{yx\cdots yx}_{\text{$n$-times $y$}}\mapsto n.
+        \]
+\end{example}
+
+\begin{example}
+    
+\end{example}
 
 \section{Trusses}
 
@@ -752,8 +799,10 @@ We now discuss universal differences between heaps and groups.
     \end{align*}
     Moreover, $\End(H)$ is a truss with the usual composition:
     \begin{align*}
-    &[f,g,h]\circ k(a)=[f(k(a)),g(k(a),h(k(a))],\\
-    &f\circ [h,g,k](a)=f([g(a),h(a),k(a)])=[fg(a),fh(a),fk(a)].
+    &\left([f,g,h]\circ k\right)(a)=[f(k(a)),g(k(a),h(k(a))]
+    \shortintertext{and}
+    &\left(f\circ [h,g,k]\right)(a)=f([g(a),h(a),k(a)])
+    =[f(g(a)),f(h(a)),f(k(a))].
     \end{align*}
 \end{example}
 
@@ -770,8 +819,15 @@ an affine space?
     \[
     \overrightarrow{f}\left(\overrightarrow{ab}\right)=\overrightarrow{f(a)f(b)}
     \]
+    for all $a,b\in A$. This means that
+    \[
+        \overrightarrow{f}\left(\overrightarrow{ab}\right)
+        =
+    \]
     An affine space with an $F$-affine multiplication is a truss... 
 \end{example}
+
+A \textbf{skew ring} is a...
 
 \begin{example}
     A (left) skew ring is a (left) truss
@@ -781,7 +837,7 @@ an affine space?
     \]
 \end{example}
 
-A (left) skew brace is a triple $(A,+,\circ)$, where $(A,+)$ and $(A,\circ)$ are
+A (left) \textbf{skew brace} is a triple $(A,+,\circ)$, where $(A,+)$ and $(A,\circ)$ are
 groups and $a\circ(b+c)=a\circ b-a+a\circ c$ holds for all $a,b,c\in A$. 
 
 \begin{proposition}
