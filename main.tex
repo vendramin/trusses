@@ -1,4 +1,4 @@
-\documentclass[graybox]{svmult}
+  \documentclass[graybox]{svmult}
 
 \usepackage{amssymb}
 \usepackage{amsmath}
@@ -765,7 +765,22 @@ $X$ and it will be denoted by $\mathcal{H}(X)$.
 \end{example}
 
 We now describe the \textbf{direct sum} (or coproduct) $H_1\boxtimes H_2$ of the 
-abelian heaps $H_1$ and $H_2$. Let $U$ be the disjoiunt union of $H_1$ and $H_2$ and
+abelian heaps $H_1$ and $H_2$. Let 
+$\iota_1\colon H_1\to H_1\boxtimes H_2$ and 
+$\iota_2\colon H_2\to H_1\boxtimes H_2$ be the inclusions. 
+It is precisely the coproduct of 
+$H_1$ and $H_2$ in the category of abelian heaps. 
+\[\begin{tikzcd}
+	{H_1} & {H_1\boxtimes H_2} & {H_2} \\
+	& K
+	\arrow["{\iota_2}", from=1-2, to=1-3]
+	\arrow[dashed, from=1-2, to=2-2]
+	\arrow[from=1-3, to=2-2]
+	\arrow["{\iota_1}", from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-2]
+\end{tikzcd}\]
+
+Let $U$ be the disjoiunt union of $H_1$ and $H_2$ and
 $\mathcal{A}(U)$ be the free abelian heap on $U$...
 \[
 H_1\boxtimes H_2=\mathcal{H}\left(G(H_1,e_1)\oplus G(H_2,e_2)\oplus\Z\right)
