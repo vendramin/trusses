@@ -1,20 +1,9 @@
-  \documentclass[graybox]{svmult}
+\documentclass{svmult}
 
-\usepackage{amssymb}
-\usepackage{amsmath}
-\usepackage{amstext}
 \usepackage{mathtools}
-\usepackage{mathptmx}       
-\usepackage{helvet}        
-\usepackage{courier}      
-\usepackage{type1cm}     
-\usepackage{listings}                        
-\usepackage{makeidx}    
-\usepackage{graphicx}   
-\usepackage{multicol}        
-\usepackage[bottom]{footmisc}
+\usepackage{newtxtext}
+\usepackage{newtxmath}
 \usepackage{tikz-cd}
-\usepackage{hyperref}
 
 % For mathcal fonts
 \usepackage{eucal} 
@@ -28,6 +17,8 @@
 \let\exercise\relax
 \let\example\relax
 \let\conjecture\relax
+
+\let\openbox\relax
 
 \def\factname{Fact}
 
@@ -440,7 +431,8 @@ b=[b,a,a]=[c,c,[b,a,a]]=[c,[a,b,c],a]=[c,d,a].
 
 To prove 4) note that, if $a=b$, then $[a,b,c]=[a,a,c]=c$ for all $c\in H$ 
 by Malcev's identity. Conversely,
-if $[a,b,c]=c$ for all $c\in H$, in particular, $a=[a,b,b]=b$ by Malcev's identity. 
+if $[a,b,c]=c$ for all $c\in H$, then, 
+in particular, $a=[a,b,b]=b$ by Malcev's identity. 
 \end{proof}
 
 \begin{exercise}
@@ -718,8 +710,8 @@ word is
 \[
 (x_1\cdots x_{2n+1})^{\operatorname{t}}=x_{2n+1}\cdots x_2x_1.
 \]
-On $W(X)$ we define a ternary operation $[-,-,-]$ by \emph{grafting and pruning}:
-if $u,v,w\in W(X)$, then $[u,v,w]$ is obtained by removing (or pruning) all 
+On $W(X)$ we define a ternary operation $[-,-,-]$ by \emph{grafting and pruning}. What does it mean? 
+If $u,v,w\in W(X)$, then $[u,v,w]$ is obtained by removing (or pruning) all 
 pairs of consecutive equal letters from $uv^{\operatorname{t}}w$ (obtained by
 concatenation (or grafting) of $u$, $v^{\operatorname{t}}$ and $w$. One
 proves that $\left(W(X),[-,-,-]\right)$ is a heap. It is the \textbf{free heap} on 
