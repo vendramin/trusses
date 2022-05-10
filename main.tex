@@ -4,6 +4,15 @@
 \usepackage{newtxtext}
 \usepackage{newtxmath}
 \usepackage{tikz-cd}
+\usepackage{datetime}
+\usepackage{hyperref}
+
+% To avoid two warning messages
+\usepackage{bookmark}
+\makeatletter
+\def\toclevel@title{-1}
+\def\toclevel@author{0}
+\makeatother
 
 % For mathcal fonts
 \usepackage{eucal} 
@@ -86,7 +95,10 @@ The course is addressed to Master and PhD students,
 researchers and any one else with an 
 interest in (new) algebraic structures. 
 Notes by
-Leandro Vendramin. Please send comments and corrections to: \url{Leandro.Vendramin@vub.be} 
+Leandro Vendramin. 
+This version
+was compiled on \today~at~\currenttime.
+Please send comments and corrections to: \url{Leandro.Vendramin@vub.be} 
 
 \section{Algebraic structures}
 
@@ -757,11 +769,9 @@ $X$ and it will be denoted by $\mathcal{H}(X)$.
 \end{example}
 
 We now describe the \textbf{direct sum} (or coproduct) $H_1\boxtimes H_2$ of the 
-abelian heaps $H_1$ and $H_2$. Let 
-$\iota_1\colon H_1\to H_1\boxtimes H_2$ and 
-$\iota_2\colon H_2\to H_1\boxtimes H_2$ be the inclusions. 
+abelian heaps $H_1$ and $H_2$. 
 It is precisely the coproduct of 
-$H_1$ and $H_2$ in the category of abelian heaps. 
+$H_1$ and $H_2$ in the category of abelian heaps:
 \[\begin{tikzcd}
 	{H_1} & {H_1\boxtimes H_2} & {H_2} \\
 	& K
@@ -771,6 +781,10 @@ $H_1$ and $H_2$ in the category of abelian heaps.
 	\arrow["{\iota_1}", from=1-1, to=1-2]
 	\arrow[from=1-1, to=2-2]
 \end{tikzcd}\]
+where  
+$\iota_1\colon H_1\to H_1\boxtimes H_2$ and 
+$\iota_2\colon H_2\to H_1\boxtimes H_2$ are the inclusions. 
+
 
 Let $U$ be the disjoiunt union of $H_1$ and $H_2$ and
 $\mathcal{A}(U)$ be the free abelian heap on $U$...
@@ -860,9 +874,10 @@ A \textbf{skew ring} is a...
 \end{example}
 
 A (left) \textbf{skew brace} is a triple $(A,+,\circ)$, where $(A,+)$ and $(A,\circ)$ are
-groups and $a\circ(b+c)=a\circ b-a+a\circ c$ holds for all $a,b,c\in A$. 
+groups and $a\circ(b+c)=a\circ b-a+a\circ c$ holds for all $a,b,c\in A$. It follows that
+$1_A=0_A$.  
 
-\begin{proposition}
+\begin{proposition}\
     \begin{enumerate}
         \item Let $B$ be a skew brace. Then $\left(H(B),\circ\right)$ is a left skew truss.
         \item Any left skew truss...
@@ -870,8 +885,8 @@ groups and $a\circ(b+c)=a\circ b-a+a\circ c$ holds for all $a,b,c\in A$.
 \end{proposition}
 
 \begin{proof}
-    Note that in a skew brace
-    $x\circ(-y)=x-x\circ y+x$ for all $x,y$. Now 
+    1) Note that 
+    $x\circ(-y)=x-x\circ y+x$ for all $x,y\in B$. Now 
     \begin{align*}
     a\circ [b,c,d]&=a\circ (b-c+d)\\
     &=a\circ b-a+a\circ(-c)-a+a\circ d\\
