@@ -864,13 +864,20 @@ groups and $a\circ(b+c)=a\circ b-a+a\circ c$ holds for all $a,b,c\in A$.
 
 \begin{proposition}
     \begin{enumerate}
-        \item If we view a group $(B,+)$ as a heap $H(B)$, then $H(B)$ is a left skew truss.
+        \item Let $B$ be a skew brace. Then $\left(H(B),\circ\right)$ is a left skew truss.
         \item Any left skew truss...
     \end{enumerate}  
 \end{proposition}
 
 \begin{proof}
-    
+    Note that in a skew brace
+    $x\circ(-y)=x-x\circ y+x$ for all $x,y$. Now 
+    \begin{align*}
+    a\circ [b,c,d]&=a\circ (b-c+d)\\
+    &=a\circ b-a+a\circ(-c)-a+a\circ d\\
+    &=a\circ b-a\circ c+a\circ d\\
+    &=[a\circ b,a\circ c,a\circ d].
+    \end{align*}
 \end{proof}
 
 \begin{example}
