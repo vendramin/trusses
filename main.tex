@@ -94,11 +94,11 @@ Department of Mathematics at ULB, Brussels, in May 2022.
 The course is addressed to Master and PhD students,
 researchers and any one else with an 
 interest in (new) algebraic structures. 
-Notes by
-Leandro Vendramin. 
+Notes by Leandro Vendramin. Please send comments 
+and corrections to \url{Leandro.Vendramin@vub.be}.  
+
 This version
 was compiled on \today~at~\currenttime.
-Please send comments and corrections to: \url{Leandro.Vendramin@vub.be} 
 
 \section{Algebraic structures}
 
@@ -855,15 +855,28 @@ an affine space?
     \[
     \overrightarrow{f}\left(\overrightarrow{ab}\right)=\overrightarrow{f(a)f(b)}
     \]
-    for all $a,b\in A$. This means that
+    for all $a,b\in A$. This means that 
+    \begin{align*}
+        [f(a),f(b),f(c)] &= f(a)+\overrightarrow{f(b)f(c)}
+        =f(a)+\overrightarrow{f}\left(\overrightarrow{bc}\right)\\
+        &=f(a)+\overrightarrow{f(a)f\left(a+\overrightarrow{bc}\right)}
+        = f\left(a+\overrightarrow{bc}\right)
+        = f\left([a,b,c]\right)
+    \end{align*}
+    for all $a,b,c\in A$. 
+    
+    Let $m\colon A\times A\to A$, $(x,y)\mapsto xy$, be the multiplication map. 
+    If $m$ is bi-affine, 
+    then 
     \[
-        \overrightarrow{f}\left(\overrightarrow{ab}\right)
-        =
+    [a,b,c]d=m([a,b,c],d)=[m(a,d),m(b,d),m(c,d)]=[ad,bd,cd].
     \]
-    An affine space with an $F$-affine multiplication is a truss... 
+    
+    Thus an affine space with an $F$-affine multiplication is a truss.
 \end{example}
 
-A \textbf{skew ring} is a...
+A (left) \textbf{skew ring} is a triple $(A,+,\cdot)$, where $(A,+)$ is a group, 
+$(A,\cdot)$ is a semigroup and $a(b+c)=ab-a+ac$ for all $a,b,c\in A$. 
 
 \begin{example}
     A (left) skew ring is a (left) truss
@@ -873,33 +886,35 @@ A \textbf{skew ring} is a...
     \]
 \end{example}
 
-A (left) \textbf{skew brace} is a triple $(A,+,\circ)$, where $(A,+)$ and $(A,\circ)$ are
-groups and $a\circ(b+c)=a\circ b-a+a\circ c$ holds for all $a,b,c\in A$. It follows that
+A \textbf{skew left brace} is a triple $(A,+,\cdot)$, where $(A,+)$ and $(A,\cdot)$ are
+groups and $a(b+c)=ab-a+ac$ holds for all $a,b,c\in A$. It follows that
 $1_A=0_A$.  
 
 \begin{proposition}\
     \begin{enumerate}
-        \item Let $B$ be a skew brace. Then $\left(H(B),\circ\right)$ is a left skew truss.
-        \item Any left skew truss...
+        \item Let $B$ be a skew left brace. Then $\left(H(B),\cdot\right)$ is a skew left truss.
+        \item Let $T$ be a skew left truss such that $(T,\cdot)$ is a group. Then 
+            $x+y=[x,1,y]$ turns $G(T,1)$ into a skew left brace. 
+        $(G(T,1)$
     \end{enumerate}  
 \end{proposition}
 
 \begin{proof}
-    1) Note that 
-    $x\circ(-y)=x-x\circ y+x$ for all $x,y\in B$. Now 
+    We first prove 1). Note that 
+    $x\cdot(-y)=x-x\cdot y+x$ for all $x,y\in B$. Now 
     \begin{align*}
-    a\circ [b,c,d]&=a\circ (b-c+d)\\
-    &=a\circ b-a+a\circ(-c)-a+a\circ d\\
-    &=a\circ b-a\circ c+a\circ d\\
-    &=[a\circ b,a\circ c,a\circ d].
+    a [b,c,d]&=a (b-c+d)\\
+    &=a b-a+a(-c)-a+ad\\
+    &=a b-ac+ad\\
+    &=[ab,ac,ad].
     \end{align*}
+    
+    We now prove 2). Let $a,b,c\in T$. Then 
+    \[
+    x(y+z)=x[y,1,z]=[xy,x,xz]=xy-x+xz.
+    \]
+    From this the claim follows. 
 \end{proof}
-
-\begin{example}
-    A skew left truss is a skew...
-    $a+b=[a,1,b]$. 
-    $G(T,1)$ is a skew brace. 
-\end{example}
 
 \bibliographystyle{plain}
 \bibliography{refs}
