@@ -7,6 +7,14 @@
 \usepackage{datetime}
 \usepackage{hyperref}
 
+\pdfstringdefDisableCommands{%
+%  \def${}%
+  \def\alpha{alpha}%
+  \def\({}%
+  \def\){}%
+  \def\texttt#1{<#1>}%
+}
+
 % To avoid two warning messages
 \usepackage{bookmark}
 \makeatletter
@@ -86,21 +94,25 @@ An algebraic structure is a collection of sets with operations. Typical and most
 
 %{\let\clearpage\relax\tableofcontents}
 
-\section{Introduction}
+% 28/4/2022
+\section{}
+
+\subsection{Introduction}
 
 The notes correspond to a 8-hours mini-course 
 taught by Prof. Tomasz Brzezi\'nski at the 
 Department of Mathematics at ULB, Brussels, in May 2022.
 The course is addressed to Master and PhD students,
 researchers and any one else with an 
-interest in (new) algebraic structures. 
-Notes by Leandro Vendramin. Please send comments 
-and corrections to \url{Leandro.Vendramin@vub.be}.  
+interest in (new) algebraic structures. The course
+is based on \cite{MR4009388,MR4368576,MR4400063}. 
 
+
+Notes by Leandro Vendramin.  
 This version
 was compiled on \today~at~\currenttime.
 
-\section{Algebraic structures}
+\subsection{Algebraic structures}
 
 We start with some basic definitions from universal algebra. We refer
 to \cite{MR620952} for more details. 
@@ -200,7 +212,7 @@ Prove the following statements:
 \end{enumerate}
 \end{exercise}
 
-\section{Heaps}
+\subsection{Heaps}
 
 \begin{definition}
 \index{Heap}
@@ -223,11 +235,17 @@ Equality \eqref{eq:Malcev} is known as Malcev's identity.
 Homomorphism of heaps are defined in the usual way. Heaps and heap homomorphism for a category. 
 It will be denoted by $\Hp$. 
 
+\subsection{Examples}
+
 The empty set $\emptyset$ is a heap. However, we will only work with non-empty heaps. 
 
 \begin{example}
 \label{exa:H(G)}
-    If $G$ is a group, then $[a,b,c]=ab^{-1}c$ turns $G$ into a heap $H(G)$. Note that
+    If $G$ is a group, then the operation
+    \[
+    [a,b,c]=ab^{-1}c
+    \]
+    turns $G$ into a heap $H(G)$. Note that
     the heap $G$ is abelian if and only if $H(G)$ is abelian. Moreover, 
     if $f\colon G\to G_1$ is a homomorphism of groups, then $H(f)\colon H(G)\to H(G_1)$, $x\mapsto f(x)$, is a 
     homomorphism of heaps. 
@@ -269,6 +287,7 @@ the following condition hold:
 \end{enumerate}
 
 \begin{example}
+\label{exa:affine}
     Let $A$ be an affine space. Then $A$ is an abelian 
     heap with the operation $[a,b,c]=a+\overrightarrow{bc}$. 
     
@@ -306,8 +325,10 @@ the following condition hold:
     \]
 \end{example}
 
+\subsection{Heaps vs. groups}
+
 We now summarize the relationship between groups and heaps. Let $\Grp$ denote 
-the category of groups and group homomorphism. 
+the category of groups and group homomorphisms. 
 
 \begin{theorem}\
 \label{thm:heaps_and_groups}
@@ -382,11 +403,12 @@ the category of groups and group homomorphism.
 \end{proof}
 
 As an application of Theorem \ref{thm:heaps_and_groups} we can quickly prove
-the several properties of heaps. However, we will 
-present heap-theoretic proofs. 
+the several properties of heaps. 
 
-For $n\in\Z_{\geq2}$ let 
-$\Sym_n$ be the symmetric group in $n$ letters. 
+\subsection{Properties of heaps}
+
+We now prove several properties of heaps. Instead of using Theorem \ref{thm:heaps_and_groups}
+we rather provide heap-theoretic proofs. 
 
 \begin{theorem}
 \label{thm:properties}
@@ -454,6 +476,9 @@ in particular, $a=[a,b,b]=b$ by Malcev's identity.
     $[a,b,c]=c$.
 \end{exercise}
 
+For $n\in\Z_{\geq2}$ let 
+$\Sym_n$ be the symmetric group in $n$ letters. 
+
 \begin{exercise}
 \label{xca:abelian}
     In an abelian heap,
@@ -469,6 +494,8 @@ Let us do a concrete example:
 \begin{align*}
     [a,b,c,d,b]=[a,b,[c,d,b]]=[a,b,[b,d,c]]=[[a,b,b],d,c]=[a,d,c].
 \end{align*}
+
+\subsection{Subheaps and the subheap relation}
 
 \begin{definition}
     Let $H$ be a heap. 
@@ -507,6 +534,9 @@ Note that $a\sim_Sb$ if and only if $[a,b,s]\in S$ for all $s\in S$.
     \]
     and hence $a\sim_S c$. 
 \end{proof}
+
+% 5/5/2022
+\section{}
 
 Let $H$ be a heap and $S\subseteq H$ be a subheap. For $a\in H$ 
 the orbit of $a$ is the set
@@ -707,7 +737,7 @@ We leave the proof of the following result as an exercise.
     Every congruence of heaps is a subheap relation with respect to a normal subheap.  
 \end{corollary}
 
-We now discuss universal differences between heaps and groups. 
+\subsection{Universal differences between heaps and groups} 
 
 Let $X$ be a non-empty set. The set $W(X)$ of reduced words on $X$ 
 is defined as the set of words 
@@ -725,7 +755,7 @@ word is
 On $W(X)$ we define a ternary operation $[-,-,-]$ by \emph{grafting and pruning}. What does it mean? 
 If $u,v,w\in W(X)$, then $[u,v,w]$ is obtained by removing (or pruning) all 
 pairs of consecutive equal letters from $uv^{\operatorname{t}}w$ (obtained by
-concatenation (or grafting) of $u$, $v^{\operatorname{t}}$ and $w$. One
+concatenation of $u$, $v^{\operatorname{t}}$ and $w$). One
 proves that $\left(W(X),[-,-,-]\right)$ is a heap. It is the \textbf{free heap} on 
 $X$ and it will be denoted by $\mathcal{H}(X)$. 
 
@@ -740,7 +770,7 @@ $X$ and it will be denoted by $\mathcal{H}(X)$.
 	\arrow["f"', from=1-1, to=2-1]
 	\arrow["{\varphi }", dashed, from=1-2, to=2-1]
 \end{tikzcd}\]
-    commutes, where $\iota$ denotes the inclusion $X\to W(X)$. 
+    commutes, where $\iota\colon X\to W(X)$ denotes the inclusion. 
 \end{definition}
 
 \begin{example}
@@ -760,7 +790,7 @@ $X$ and it will be denoted by $\mathcal{H}(X)$.
     Let $X$ be a set. The \textbf{free abelian heap} $\mathcal{A}(X)$ 
     is defined as the free heap $\mathcal{H}(X)$ on $X$ modulo
     the action of 
-    $\bigcup_{n}\Sym_{n+1}\times\Sym_n$ given by 
+    $\bigcup_{n}\left(\Sym_{n+1}\times\Sym_n\right)$ given by 
     \[
     (\sigma,\tau)\cdot x_1y_1x_2y_2\cdots x_ny_nx_{n+1}
     =x_{\sigma(1)}y_{\tau(1)}x_{\sigma(2)}y_{\tau(2)}\cdots x_{\sigma(n)}y_{\sigma(n)}x_{\sigma(n+1)}
@@ -792,7 +822,7 @@ $\mathcal{A}(U)$ be the free abelian heap on $U$...
 H_1\boxtimes H_2=\mathcal{H}\left(G(H_1,e_1)\oplus G(H_2,e_2)\oplus\Z\right)
 \]
 
-\section{Trusses}
+\subsection{Trusses}
 
 \begin{definition}
     A left (resp. right) \textbf{skew truss} is a heap $(T,[-,-,-])$ 
@@ -820,7 +850,7 @@ H_1\boxtimes H_2=\mathcal{H}\left(G(H_1,e_1)\oplus G(H_2,e_2)\oplus\Z\right)
 \end{example}
 
 \begin{example}
-    Let $H$ be an abelian heap. The set $\End(H)$ of heap endomorphisms $H\to H$
+    Let $H$ be an abelian heap. The set $\End(H)$ of heap endomorphisms of $H$ 
     is an abelian heap with 
     \[
     [f,g,h](a)=[f(a),g(a),h(a)].
@@ -847,7 +877,7 @@ with a bilinear associative multiplication. In particular, $A$ is a ring. What i
 an affine space?
 
 \begin{example}
-    Let $F$ be a field...
+    Let $F$ be a field. Then 
     $F$ acts on $A$ by $(\lambda,a,b)\mapsto a+\lambda\overrightarrow{ab}$. An affine
     transformation is a pair $\left(f,\overrightarrow{f}\right)$, where 
     $f\colon A\to B$ is a map and $\overrightarrow{f}\colon \overrightarrow{A}\to\overrightarrow{B}$ is a linear
@@ -855,7 +885,7 @@ an affine space?
     \[
     \overrightarrow{f}\left(\overrightarrow{ab}\right)=\overrightarrow{f(a)f(b)}
     \]
-    for all $a,b\in A$. This means that 
+    for all $a,b\in A$. In particular, this implies that 
     \begin{align*}
         [f(a),f(b),f(c)] &= f(a)+\overrightarrow{f(b)f(c)}
         =f(a)+\overrightarrow{f}\left(\overrightarrow{bc}\right)\\
@@ -865,9 +895,10 @@ an affine space?
     \end{align*}
     for all $a,b,c\in A$. 
     
-    Let $m\colon A\times A\to A$, $(x,y)\mapsto xy$, be the multiplication map. 
+    Let $m\colon A\times A\to A$, $(x,y)\mapsto xy$, 
+    be the multiplication map. 
     If $m$ is bi-affine, 
-    then 
+    then, in particular, 
     \[
     [a,b,c]d=m([a,b,c],d)=[m(a,d),m(b,d),m(c,d)]=[ad,bd,cd].
     \]
@@ -893,8 +924,9 @@ $1_A=0_A$.
 \begin{proposition}\
     \begin{enumerate}
         \item Let $B$ be a skew left brace. Then $\left(H(B),\cdot\right)$ is a skew left truss.
-        \item Let $T$ be a skew left truss such that $(T,\cdot)$ is a group. Then 
-            $x+y=[x,1,y]$ turns $G(T,1)$ into a skew left brace. 
+        \item Let $T$ be a skew left truss such that $(T,\cdot)$ is a group. If $1_T$ denotes
+        the neutral element of $(T,\cdot)$, then 
+            $x+y=[x,1_T,y]$ turns $G(T,1_T)$ into a skew left brace. 
     \end{enumerate}  
 \end{proposition}
 
@@ -910,12 +942,175 @@ $1_A=0_A$.
     
     We now prove 2). Let $a,b,c\in T$. Then 
     \[
-    x(y+z)=x[y,1,z]=[xy,x,xz]=xy-x+xz.
+    x(y+z)=x[y,1_T,z]=[xy,x,xz]=xy-x+xz.
     \]
     From this the claim follows. 
 \end{proof}
 
-\bibliographystyle{plain}
+\subsection{Trusses on \(\Z\)}
+
+The additive group $\Z$ is a heap with the operation $[a,b,c]=a-b+c$. Following
+\cite{MR4048518} we now describe the truss structures over $\left(\Z,[-,-,-]\right)$. 
+
+Let 
+\begin{align*}
+    I_2(\Z) &= \left\{q\in M_2(\Z):q^2=q,\,\operatorname{trace}(q)=1\right\}\\
+    &=\left\{\begin{pmatrix}
+        b & a\\
+        -c & 1-b
+    \end{pmatrix}:a,b\in\Z,\,ac=b(b-1)\right\}.
+\end{align*}
+The trusses on $\Z$ are:
+\begin{enumerate}
+    \item $m\cdot n=m$.
+    \item $m\cdot n=n$.
+    \item $m\cdot n=amn+b(m+n)+c$. This truss will be denoted by $\Z(a,b,c)$. 
+\end{enumerate}
+
+One proves that $\Z(a,b,c)\simeq\Z(\alpha,\beta,\gamma)$ if and only if
+\[
+\begin{pmatrix}
+\beta & \alpha\\
+-\gamma & 1-\beta
+\end{pmatrix}
+=\begin{pmatrix}
+1&0\\k&\pm 1
+\end{pmatrix}
+\begin{pmatrix}
+b & a\\
+-c & 1-b
+\end{pmatrix}
+\begin{pmatrix}
+1&0\\ \mp k&\pm1
+\end{pmatrix}
+\]
+for some $k\in\Z$. 
+
+Note that
+\[
+D_\infty=\left\{\begin{pmatrix}
+1&0\\k&\pm 1
+\end{pmatrix}:k\in\Z\right\}
+\]
+is the infinite-dihedral group. So isomorphism classes
+of commutative truss structures on 
+$\left(\Z,[-,-,-]\right)$ are in bijective correspondence with orbits of the conjugation 
+action of $D_\infty$ on $I_2(\Z)$. 
+
+% 12/5/2022
+\section{}
+
+\subsection{A binary perspective}
+
+Let $T$ be a truss and $e\in T$. Let $\sigma_L\colon T\to T$, $\sigma_L(a)=ae$, and 
+$\sigma_R\colon T\to T$, $\sigma_R(a)=ea$. Note that $\sigma_L(e)=\sigma_R(e)$. 
+Construct $\left(T,[-,-,-]\right)$ to the retract $G(T,e)$. Then
+\[
+a(b+c)=a[b,e,c]=ab-ae+ac=ab-\sigma_L(a)+ac
+\]
+and similarly $(a+b)c=ab-\sigma_R(c)+bc$. So one can think of trusses
+as tuples $(T,+,\cdot,\sigma_L,\sigma_R)$ with 
+$\sigma_L(a)=a0$ and $\sigma_R(a)=0a$. This is a different algebraic structure, though! 
+\begin{enumerate}
+    \item If $\sigma_L(a)=\sigma_R(a)=0$ for all $a$, then we obtain a ring. 
+    \item If $\sigma_L(a)=\sigma_R(a)=a$ for all $a$, then we obtain a two-sided brace (i.e. a radical ring). 
+\end{enumerate}
+
+\subsection{Trusses and rings}
+
+\begin{example}
+    Let $R$ be a ring. Then $H(R,+)$ is a heap with $[a,b,c]=a-b+c$. Thus 
+    $\left(H(R,+),\cdot\right)$ is a truss. It will be denoted by $T(R)$. 
+\end{example}
+
+\begin{theorem}
+\label{thm:ring}
+    Let $T$ be a non-empty truss. For every $G(T,e)$ is an associative
+    ring with multiplication $ab=[ab,ae,e^2,eb,e]$.
+    This ring will be denoted by $R(T,e)$. 
+    The map 
+    $\tau_e^f\colon T\to T$, $a\mapsto [a,e,f]$, is an isomorphism of rings 
+    $R(T,e)\to R(T,f)$. 
+\end{theorem}
+
+\begin{proof}[Sketch of the proof]
+    Let us prove the distributivity. On the one hand, 
+    \begin{align*}
+        a(b+c) &= a[b,e,c]...
+    \end{align*}
+    On the other hand, 
+    \begin{align*}
+        ab+ac &=
+    \end{align*}
+    So the distributivity follows from Exercise \ref{xca:abelian}.
+\end{proof}
+
+\begin{example}
+
+\end{example}
+
+\begin{example}
+
+\end{example}
+
+\begin{example}
+
+\end{example}
+
+\subsection{Trusses in ideal extension of rings}
+
+\begin{theorem}
+    Let $T$ be a non-empty truss and $e\in T$. 
+    The following statement hold:
+    \begin{enumerate}
+        \item Let $\epsilon_R,\epsilon_L\colon T\to T$, with
+        $\epsilon_R(a)=[ea,e^2,e]$ and
+        $\epsilon_L(a)=[ae,e^2,e]$. Then...
+        \item The ring $R(e)$ has multiplication...
+        \item The sequence
+        \[
+        ...
+        \]
+        is an ideal extension.
+        \item $(T,11)=\left(T(R(e),(e,1)\right)$.
+    \end{enumerate}
+\end{theorem}
+
+\subsection{Ideal extension of rings}
+\subsection{Ideal extensions and homothetism}
+\subsection{Ideal extension from trusses}
+\subsection{Some lessons}
+
+\begin{enumerate}
+    \item Up to isomorphism trusses determine and are determined by ideal ring
+    extensions by integers.
+    \item Ideal ring extensions of $R$ by $\Z$ correspond to homothetic data in $R$. 
+    \item To classify trusses built on $R$ is equivalent to classify homothetic data on $R$. 
+\end{enumerate}
+
+\begin{example}
+
+\end{example}
+
+\subsection{Congruences of trusses: paragons}
+
+\begin{definition}
+
+\end{definition}
+
+\begin{example}
+
+\begin{proposition}
+
+\end{proposition}
+
+\begin{proof}
+
+\end{proof}
+
+\end{example}
+
+\bibliographystyle{abbrv}
 \bibliography{refs}
 
 %\printindex
