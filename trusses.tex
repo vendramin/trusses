@@ -1013,7 +1013,9 @@ as tuples $(T,+,\cdot,\sigma_L,\sigma_R)$ with
 $\sigma_L(a)=a0$ and $\sigma_R(a)=0a$. This is a different algebraic structure, though! 
 \begin{enumerate}
     \item If $\sigma_L(a)=\sigma_R(a)=0$ for all $a$, then we obtain a ring. 
-    \item If $\sigma_L(a)=\sigma_R(a)=a$ for all $a$, then we obtain a two-sided brace (i.e. a radical ring). 
+    \item If $\sigma_L(a)=\sigma_R(a)=a$ for all $a$, then we obtain a 
+        skew left brace such that 
+        $(a+b)c=ac-c+ab$ for all $a,b,c$.
 \end{enumerate}
 
 \subsection{Trusses and rings}
@@ -1025,7 +1027,7 @@ $\sigma_L(a)=a0$ and $\sigma_R(a)=0a$. This is a different algebraic structure, 
 
 \begin{theorem}
 \label{thm:ring}
-    Let $T$ be a non-empty truss. For every $G(T,e)$ is an associative
+    Let $T$ be a truss. For every $G(T,e)$ is an associative
     ring with multiplication $ab=[ab,ae,e^2,eb,e]$.
     This ring will be denoted by $R(T,e)$. 
     The map 
