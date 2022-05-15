@@ -510,6 +510,7 @@ Let us do a concrete example:
 
 If $H$ is a heap and $S$ is a sub-heap of $H$, we define 
 a \textbf{sub-heap relation} as follows:
+
 \[
 a\sim_S b\Longleftrightarrow [a,b,s]\in S\text{ for some $s\in S$}.
 \]
@@ -570,6 +571,7 @@ of equivalence classes.
     $a\in H$ be such that $a\sim_Ss$. Then 
     $[a,s,t]=u\in S$ for some $t\in S$. By Theorem \ref{thm:properties}, 
     $a=[u,t,s]\in S$, as $S$ is a sub-heap. Conversely, 
+
     if $a\in S$, then, in particular, $[a,s,s]\in S$. Thus 
     $a\sim_Ss$. 
 
@@ -1029,7 +1031,7 @@ $\sigma_L(a)=a0$ and $\sigma_R(a)=0a$. This is a different algebraic structure, 
 \label{thm:ring}
     Let $T$ be a truss. For every $G(T,e)$ is an associative
     ring with operations $a\cdot b=[ab,ae,e^2,eb,e]$
-    and $a+b=[a,e,b]$. 
+    and $a+b=[a,e,b]$.
     This ring will be denoted by $R(T,e)$. 
     The map 
     $\tau_e^f\colon T\to T$, $a\mapsto [a,e,f]$, is an isomorphism of rings 
