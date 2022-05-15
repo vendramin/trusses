@@ -495,28 +495,28 @@ Let us do a concrete example:
     [a,b,c,d,b]=[a,b,[c,d,b]]=[a,b,[b,d,c]]=[[a,b,b],d,c]=[a,d,c].
 \end{align*}
 
-\subsection{Subheaps and the subheap relation}
+\subsection{sub-heaps and the sub-heap relation}
 
 \begin{definition}
     Let $H$ be a heap. 
-    A non-empty subset $S$ of $H$ is a \textbf{subheap} if $[s,s_1,s_2]\in S$ for all 
+    A non-empty subset $S$ of $H$ is a \textbf{sub-heap} if $[s,s_1,s_2]\in S$ for all 
     $s,s_1,s_2\in S$. 
 \end{definition}
 
 \begin{exercise}
     Let $H$ be a heap, $e\in H$ and $S$ be a non-empty subset of $H$. 
-    Prove that $S$ is a subheap if and only if $S$ is a subgroup of $G(H,e)$. 
+    Prove that $S$ is a sub-heap if and only if $S$ is a subgroup of $G(H,e)$. 
 \end{exercise}
 
-If $H$ is a heap and $S$ is a subheap of $H$, we define 
-a \textbf{subheap relation} as follows:
+If $H$ is a heap and $S$ is a sub-heap of $H$, we define 
+a \textbf{sub-heap relation} as follows:
 \[
 a\sim_S b\Longleftrightarrow [a,b,s]\in S\text{ for some $s\in S$}.
 \]
 Note that $a\sim_Sb$ if and only if $[a,b,s]\in S$ for all $s\in S$. 
 
 \begin{proposition}
-    Let $H$ be a heap and $S$ be a subheap. Then $\sim_S$ is an equivalence relation. 
+    Let $H$ be a heap and $S$ be a sub-heap. Then $\sim_S$ is an equivalence relation. 
 \end{proposition}
 
 \begin{proof}
@@ -538,7 +538,7 @@ Note that $a\sim_Sb$ if and only if $[a,b,s]\in S$ for all $s\in S$.
 % 5/5/2022
 \section{}
 
-Let $H$ be a heap and $S\subseteq H$ be a subheap. For $a\in H$ 
+Let $H$ be a heap and $S\subseteq H$ be a sub-heap. For $a\in H$ 
 the orbit of $a$ is the set
 \[
 \overline{a}=\{c\in H:c\sim_S a\}
@@ -547,10 +547,10 @@ We write $H/S$ to denote the set
 of equivalence classes.
 
 \begin{theorem}
-    Let $H$ be a heap and $S$ be a subheap of $H$. The following statements hold:
+    Let $H$ be a heap and $S$ be a sub-heap of $H$. The following statements hold:
     \begin{enumerate}
         \item For every $s\in S$, $\overline{s}=S$. 
-        \item For every $a\in H$, $\overline{a}$ is a subheap of $H$.
+        \item For every $a\in H$, $\overline{a}$ is a sub-heap of $H$.
         \item For every $a,b\in H$, 
         the map
         \[
@@ -569,7 +569,7 @@ of equivalence classes.
     $\overline{s}\subseteq S$ let 
     $a\in H$ be such that $a\sim_Ss$. Then 
     $[a,s,t]=u\in S$ for some $t\in S$. By Theorem \ref{thm:properties}, 
-    $a=[u,t,s]\in S$, as $S$ is a subheap. Conversely, 
+    $a=[u,t,s]\in S$, as $S$ is a sub-heap. Conversely, 
     if $a\in S$, then, in particular, $[a,s,s]\in S$. Thus 
     $a\sim_Ss$. 
 
@@ -634,17 +634,17 @@ of equivalence classes.
 \end{proof}
 
 \begin{definition}
-    A subheap $S$ of $H$ is \textbf{normal} if 
+    A sub-heap $S$ of $H$ is \textbf{normal} if 
     for every $a\in H$ and $s,e\in H$ one has 
     $[[a,e,s],a,e]\in S$.  
 \end{definition}
 
-Note a subheap $S$ of $H$ is normal if and only if 
+Note a sub-heap $S$ of $H$ is normal if and only if 
 for every $a\in H$ and $s,e\in S$ there exists 
 $t\in S$ such that $[a,e,s]=[t,e,a]$.
     
 \begin{exercise}
-    Prove that a subheap $S$ of $H$ is normal if and only if 
+    Prove that a sub-heap $S$ of $H$ is normal if and only if 
     $S$ is a normal subgroup of $G(H,e)$ for every $e\in S$. 
 \end{exercise}
 
@@ -655,11 +655,11 @@ $t\in S$ such that $[a,e,s]=[t,e,a]$.
     \overline{c}=\{b\in H:f(b)=f(c)\}
     \]
     be the equivalence class of $c$ with respect to $\ker(f)$. 
-    Then $\overline{c}$ is a subheap of $H$.  
+    Then $\overline{c}$ is a sub-heap of $H$.  
 \end{theorem}
 
 \begin{proof}
-    To prove that $\overline{c}$ is a subheap first note that 
+    To prove that $\overline{c}$ is a sub-heap first note that 
     $c\in\overline{c}$, so $\overline{c}$ is non-empty. 
     Now let $x,y,z\in\overline{c}$. 
     Then $f(x)=f(y)=f(z)=$ 
@@ -688,7 +688,7 @@ $t\in S$ such that $[a,e,s]=[t,e,a]$.
 \begin{theorem}
     Let $f\colon H\to K$ be a homomorphism of heaps and $e\in f(H)$. 
     \begin{enumerate}
-        \item $\ker_ef$ is a normal subheap of $H$. 
+        \item $\ker_ef$ is a normal sub-heap of $H$. 
         \item $a\sim_{\ker_ef}b$ if and only if $f(a)=f(b)$. 
         \item For every $e,e_1\in f(H)$, $\ker_ef\simeq\ker_{e_1}f$. 
     \end{enumerate}
@@ -723,7 +723,7 @@ $t\in S$ such that $[a,e,s]=[t,e,a]$.
     \ker_ef=\{a\in H:f(a)=e\}=\{a\in H:f(a)=f(x)\}=\overline{x}
     \]
     Similarly, $\ker_{e_1}f=\overline{y}$. We know that both $\overline{x}$ and
-    $\overline{y}$ are subheaps of $H$. They are isomorphic, 
+    $\overline{y}$ are sub-heaps of $H$. They are isomorphic, 
     as $\tau_x^y(\overline{x})=\overline{y}$. In fact, if $z\in\overline{x}$, 
     then $\tau_x^y(z)\in\overline{y}$, as 
     \[
@@ -734,7 +734,7 @@ $t\in S$ such that $[a,e,s]=[t,e,a]$.
 We leave the proof of the following result as an exercise. 
 
 \begin{corollary}
-    Every congruence of heaps is a subheap relation with respect to a normal subheap.  
+    Every congruence of heaps is a sub-heap relation with respect to a normal sub-heap.  
 \end{corollary}
 
 \subsection{Universal differences between heaps and groups} 
@@ -1013,7 +1013,9 @@ as tuples $(T,+,\cdot,\sigma_L,\sigma_R)$ with
 $\sigma_L(a)=a0$ and $\sigma_R(a)=0a$. This is a different algebraic structure, though! 
 \begin{enumerate}
     \item If $\sigma_L(a)=\sigma_R(a)=0$ for all $a$, then we obtain a ring. 
-    \item If $\sigma_L(a)=\sigma_R(a)=a$ for all $a$, then we obtain a two-sided brace (i.e. a radical ring). 
+    \item If $\sigma_L(a)=\sigma_R(a)=a$ for all $a$, then we obtain a 
+        skew left brace such that 
+        $(a+b)c=ac-c+ab$ for all $a,b,c$.
 \end{enumerate}
 
 \subsection{Trusses and rings}
@@ -1025,8 +1027,9 @@ $\sigma_L(a)=a0$ and $\sigma_R(a)=0a$. This is a different algebraic structure, 
 
 \begin{theorem}
 \label{thm:ring}
-    Let $T$ be a non-empty truss. For every $G(T,e)$ is an associative
-    ring with multiplication $ab=[ab,ae,e^2,eb,e]$.
+    Let $T$ be a truss. For every $G(T,e)$ is an associative
+    ring with operations $a\cdot b=[ab,ae,e^2,eb,e]$
+    and $a+b=[a,e,b]$. 
     This ring will be denoted by $R(T,e)$. 
     The map 
     $\tau_e^f\colon T\to T$, $a\mapsto [a,e,f]$, is an isomorphism of rings 
@@ -1034,50 +1037,158 @@ $\sigma_L(a)=a0$ and $\sigma_R(a)=0a$. This is a different algebraic structure, 
 \end{theorem}
 
 \begin{proof}[Sketch of the proof]
+    Note that $T$ is an abelian heap. 
     Let us prove the distributivity. On the one hand, 
     \begin{align*}
-        a(b+c) &= a[b,e,c]...
+        a\cdot (b+c) &= a\cdot [b,e,c]\\
+        &=[a[b,e,c],ae,e^2,e[b,e,c],e]\\
+        &=[ab,ae,ac,ae,e^2,eb,e^2,ec,e].
     \end{align*}
     On the other hand, 
     \begin{align*}
-        ab+ac &=
+        a\cdot b+a\cdot c &= [a\cdot b,e,a\cdot c]\\
+        &=[ab,ae,e^2,eb,e,e,ac,ae,e^2,ec,e]\\
+        &=[ab,ae,e^2,eb,ac,ae,e^2,ec,e].
     \end{align*}
-    So the distributivity follows from Exercise \ref{xca:abelian}.
+    So the distributivity follows from Exercise \ref{xca:abelian}. 
+    
+    The other axioms defining a ring are checked in a similar way. 
+    
+    To prove that $\tau_e^f\colon R(T,e)\to R(T,f)$ is a bijective
+    ring homomorphism, 
+    we first note that $\tau_e^f(\tau_f^e(a))=a$ 
+    and $\tau_f^e(\tau_e^f(a))=a$ for all $a\in T$. Then 
+    we use Exercise \ref{xca:abelian} to compute 
+    \begin{align*}
+        \tau_e^f(a\cdot b)&=[a\cdot b,e,f]
+        =[[ab,ae,e^2,eb,e],e,f]
+        =[ab,ae,e^2,eb,f]
+        \shortintertext{and}
+        \tau_e^f(a)\cdot\tau_e^f(b) &= [[a,e,f][b,e,f],[a,e,f]f,f^2,f[b,e,f],f]\\
+        &=[ab,ae,af,eb,e^2,ef,fb,fe,f^2,af,ef,f^2,f^2,fb,fe,f^2,f]\\
+        &=[ab,ae,e^2,eb,f].\qedhere
+    \end{align*}
 \end{proof}
 
-\begin{example}
-
-\end{example}
-
-\begin{example}
-
-\end{example}
-
-\begin{example}
-
-\end{example}
+\begin{exercise}
+    Describe the trusses structures on $H(\Z)$. 
+\end{exercise}
 
 \subsection{Trusses in ideal extension of rings}
 
+We briefly describe a construction of \cite{MR4396016}. 
+
+\begin{definition}
+    An exact sequence of non-unitary rings and homomorphisms 
+    \[
+    \begin{tikzcd}
+	    {0} & {R} & {S} & {\Z} & {0}
+	    \arrow["{\Psi_R}", from=1-2, to=1-3]
+	    \arrow[from=1-1, to=1-2]
+	    \arrow[from=1-2, to=1-3]
+	    \arrow["{\Psi_{\Z}}", from=1-3, to=1-4]
+	    \arrow[from=1-4, to=1-5]
+    \end{tikzcd}
+    \]
+    is called an \textbf{ideal extension} of $R$ to $S$ by $\Z$. 
+\end{definition}
+
+\begin{proposition}
+    If $q\in\Psi_{\Z}^{-1}(1)$, then 
+    $q+\Psi_R(R)$ is a sub-truss of $T(S)$. 
+\end{proposition}
+
+\begin{proof}
+
+\end{proof}
+
+\subsection{Ideal extensions and double homothetism}
+
+We first start with some definitions that independently 
+go back to Mac Lane, Hoschild
+and Petrich. 
+
+\begin{definition}
+Let $R$ be a ring. A \textbf{bimultiplication} (or multiplier) on $R$ is a pair of additive
+endomorphisms $\sigma=(\sigma_L,\sigma_R)$, where 
+$\sigma_L,\sigma_R\colon R\to R$ such that
+\[
+\sigma_R(ab)=\sigma_R(a)b,\quad
+\sigma_L(ab)a\sigma_L(b),\quad
+a\sigma_R(b)=\sigma_L(a)b
+\]
+for all $a,b\in R$. 
+\end{definition}
+
+\begin{definition}
+    A bimultiplication $\sigma$ is a \textbf{double homothetism} (or self-permutable)
+    if $\sigma_L\circ \sigma_R=\sigma_R\circ \sigma_L$.
+\end{definition}
+
 \begin{theorem}
-    Let $T$ be a non-empty truss and $e\in T$. 
-    The following statement hold:
+    Let $R$ be a ring, $\sigma$ be a double homothetism and $s\in R$. 
+    Assume that $\sigma_L^2(a)=\sigma_L(a)+sa$ and 
+    $\sigma_R^2(a)=\sigma_R(a)+sa$ for all $a\in R$. 
+    Then the following statement hold:
     \begin{enumerate}
-        \item Let $\epsilon_R,\epsilon_L\colon T\to T$, with
-        $\epsilon_R(a)=[ea,e^2,e]$ and
-        $\epsilon_L(a)=[ae,e^2,e]$. Then...
-        \item The ring $R(e)$ has multiplication...
-        \item The sequence
+        \item The abelian group $R\times\Z$ is a ring with
         \[
-        ...
+        (a,k)(b,l)=(ab+l\sigma_L(a)+k\sigma_R(b)+kls,kl).
         \]
-        is an ideal extension.
-        \item $(T,11)=\left(T(R(e),(e,1)\right)$.
+        It will be denoted by $R(\sigma,s)$. 
+        \item The sequence 
+        \[
+        \begin{tikzcd}
+	    {0} & {R} & {R(\sigma,s)} & {\Z} & {0}
+	    \arrow["{\Psi_R}", from=1-2, to=1-3]
+	    \arrow[from=1-1, to=1-2]
+	    \arrow[from=1-2, to=1-3]
+	    \arrow["{\Psi_{\Z}}", from=1-3, to=1-4]
+	    \arrow[from=1-4, to=1-5]
+    \end{tikzcd},
+    \]
+    where $\psi_R(r)=(r,0)$ and $\psi_{\Z}(r,k)=k$, is an ideal extension. 
+    \item Any ideal ring extension of $R$ by $\Z$ is of this kind. 
     \end{enumerate}
 \end{theorem}
 
-\subsection{Ideal extension of rings}
-\subsection{Ideal extensions and homothetism}
+\begin{proof}[Sketch of the proof]
+    1) and 2) follow by direct calculation. 
+    
+    To prove 3) first note that
+    the sequence of abelian groups 
+    \[
+    \begin{tikzcd}
+	    {0} & {R} & {S} & {\Z} & {0}
+	    \arrow["{\Psi_R}", from=1-2, to=1-3]
+	    \arrow[from=1-1, to=1-2]
+	    \arrow[from=1-2, to=1-3]
+	    \arrow["{\Psi_{\Z}}", from=1-3, to=1-4]
+	    \arrow[from=1-4, to=1-5]
+    \end{tikzcd}
+    \]
+    splits. This means that there is a diagram 
+\[\begin{tikzcd}
+	0 & R & S & {\mathbb{Z}} & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-4, to=1-5]
+	\arrow["{\Psi_{\mathbb{Z}}}", shift left=1, from=1-3, to=1-4]
+	\arrow["{\Psi_R}", shift left=1, from=1-2, to=1-3]
+	\arrow["{\kappa }", shift left=1, from=1-4, to=1-3]
+	\arrow["{\zeta }", shift left=1, from=1-3, to=1-2]
+\end{tikzcd}\]
+    with exact rows. For $q\in\Psi_{\Z}^{-1}(1)$ let 
+    \[
+    \sigma_R(a)=\zeta(q\Psi_R(a)),
+    \quad
+    \sigma_L(a)=\zeta(\Psi_R(a)q),
+    \quad
+    s=\zeta(q^2-q).
+    \]
+    Then $\theta\colon R(\sigma,s)\to S$, $(a,\eta)\mapsto \Psi_R(a)+\eta q$, 
+    is a bijective homomorphism of rings. 
+\end{proof}
+
 \subsection{Ideal extension from trusses}
 \subsection{Some lessons}
 
