@@ -1078,7 +1078,7 @@ $\sigma_L(a)=a0$ and $\sigma_R(a)=0a$. This is a different algebraic structure, 
 
 \subsection{Trusses in ideal extension of rings}
 
-We briefly describe a construction of \cite{MR4396016}. 
+%We briefly describe a construction of \cite{MR4396016}. 
 
 \begin{definition}
     An exact sequence of non-unitary rings and homomorphisms 
@@ -1126,6 +1126,8 @@ for all $a,b\in R$.
     A bimultiplication $\sigma$ is a \textbf{double homothetism} (or self-permutable)
     if $\sigma_L\circ \sigma_R=\sigma_R\circ \sigma_L$.
 \end{definition}
+
+The following result appears in \cite{MR4396016}. 
 
 \begin{theorem}
     Let $R$ be a ring, $\sigma$ be a double homothetism and $s\in R$. 
@@ -1192,6 +1194,19 @@ for all $a,b\in R$.
 \end{proof}
 
 \subsection{Ideal extension from trusses}
+
+\begin{theorem}
+
+\end{theorem}
+
+\begin{proof}[Sketch of the proof]
+    1) and 2) follow by a direct calculation.
+    
+    3) follows from Theorem \ref{thm:ring}. 
+    
+    4)...
+\end{proof}
+
 \subsection{Some lessons}
 
 \begin{enumerate}
@@ -1202,26 +1217,37 @@ for all $a,b\in R$.
 \end{enumerate}
 
 \begin{example}
-
+    Let $A$ be an abelian group...
 \end{example}
 
 \subsection{Congruences of trusses: paragons}
 
 \begin{definition}
-
+    A \textbf{left (resp. right) paragon} in a truss $T$ is a sub-heap $P$ of $T$ 
+    such that for all $p,q\in P$ and all $a\in T$ 
+    one has $[ap,aq,q]\in P$ (resp. $[pq,qa,q]\in P$). A \textbf{paragon} 
+    is a left paragon that is also a right paragon. 
 \end{definition}
 
 \begin{example}
+    Let $R$ be a ring and $I$ be a left ideal of $R$. Then 
+    $a+I$ is a left paragon in $T(R)$ for every $a\in R$. In fact, every coset is a sub-heap and
+    \begin{align*}
+    [b(a+x),b(a+y),a+y]&=ba+bx-(ba+by)+a+y\\
+    &=a+b(x-y)+y\in a+I
+    \end{align*}
+    for all $x,y\in I$. 
+\end{example}
 
 \begin{proposition}
-
+    Let $f\colon T\to T'$ be a left trusses homomorphism. Then $P=f^{-1}(b)$ 
+    is a paragon in $T$ for all $b\in T'$. 
 \end{proposition}
 
 \begin{proof}
 
 \end{proof}
 
-\end{example}
 
 \bibliographystyle{abbrv}
 \bibliography{refs}
