@@ -1029,7 +1029,7 @@ $\sigma_L(a)=a0$ and $\sigma_R(a)=0a$. This is a different algebraic structure, 
 
 \begin{theorem}
 \label{thm:ring}
-    Let $T$ be a truss. For every $G(T,e)$ is an associative
+    Let $T$ be a truss. For every $e\in T$, $G(T,e)$ is an associative
     ring with operations $a\cdot b=[ab,ae,e^2,eb,e]$
     and $a+b=[a,e,b]$.
     This ring will be denoted by $R(T,e)$. 
@@ -1095,13 +1095,31 @@ $\sigma_L(a)=a0$ and $\sigma_R(a)=0a$. This is a different algebraic structure, 
     is called an \textbf{ideal extension} of $R$ to $S$ by $\Z$. 
 \end{definition}
 
+A \textbf{sub-truss} of $T$ is a non-empty subset of $T$ closed under both operations. 
+
 \begin{proposition}
     If $q\in\Psi_{\Z}^{-1}(1)$, then 
     $q+\Psi_R(R)$ is a sub-truss of $T(S)$. 
 \end{proposition}
 
 \begin{proof}
-
+    Let $a=q+\Psi_R(x)$, $b=q+\Psi_R(y)$ and $c=q+\Psi_R(z)$. On the one hand,
+    \[
+    [a,b,c]=a-b+c=q+\Psi_R([x,y,z])\in q+\Psi_R(R).
+    \]
+    On the other hand, 
+    \begin{align*}
+        ab &= (q+\Psi_R(x))(q+\Psi_R(y)) 
+        = q^2+q\Psi_R(y)+\Psi_R(x)q+\Psi_R(x)\Psi_R(y).
+    \end{align*}
+    Note that $q\Psi_R(y)+\Psi_R(x)q+\Psi_R(x)\Psi_R(y)\in\Psi_R(R)$. Moreover, 
+    \[
+    q^2=q+(q^2-q)\in q+\Psi_R(R),
+    \]
+    as $q^2-q\in\ker\Psi_{\Z}=\Psi_R(R)$, since 
+    \[
+    \Psi_{\Z}(q^2-q)=\Psi_{\Z}(q)^2-\Psi_{\Z}(q)=1^2-1=0.\qedhere 
+    \]
 \end{proof}
 
 \subsection{Ideal extensions and double homothetism}
@@ -1225,7 +1243,7 @@ The following result appears in \cite{MR4396016}.
 \begin{definition}
     A \textbf{left (resp. right) paragon} in a truss $T$ is a sub-heap $P$ of $T$ 
     such that for all $p,q\in P$ and all $a\in T$ 
-    one has $[ap,aq,q]\in P$ (resp. $[pq,qa,q]\in P$). A \textbf{paragon} 
+    one has $[ap,aq,q]\in P$ (resp. $[pa,qa,q]\in P$). A \textbf{paragon} 
     is a left paragon that is also a right paragon. 
 \end{definition}
 
@@ -1239,13 +1257,24 @@ The following result appears in \cite{MR4396016}.
     for all $x,y\in I$. 
 \end{example}
 
+Let $T$ and $T'$ be (left) trusses. 
+A map $f\colon T\to T'$ is a \textbf{homomorphism of (left) trusses} if 
+$f$ is a heap homomorphism, i.e. 
+$f([a,b,c])=[f(a),f(b),f(c)]$ for all $a,b,c\in A$,
+and $f(ab)=f(a)f(b)$ for all $a,b\in A$. 
+
 \begin{proposition}
     Let $f\colon T\to T'$ be a left trusses homomorphism. Then $P=f^{-1}(b)$ 
     is a paragon in $T$ for all $b\in T'$. 
 \end{proposition}
 
 \begin{proof}
-
+    Let $a\in T$ and $p,q\in f^{-1}(b)$. Then 
+    \begin{align*}
+    f([ap,aq,q])&=[f(ap),f(aq),f(q)]\\
+    &=[f(a)f(p),f(a)f(q),f(q)]=[f(a)b,f(a)b,b]=b.    
+    \end{align*}
+    Similarly, $f([pa,qa,q])=b$. 
 \end{proof}
 
 
