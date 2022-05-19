@@ -1331,9 +1331,68 @@ and $f(ab)=f(a)f(b)$ for all $a,b\in A$.
 \subsection{Congruences in one-sided trusses}
 \subsection{Examples}
 \subsection{Modules over trusses}
+
+\begin{definition}
+    Let $T$ be a truss. An abelian heap $M$ together with a truss homomorphism 
+    $\lambda\colon T\to E(M)$ is called a \textbf{(left) $T$-module}. 
+\end{definition}
+
 \subsection{Modules as algebraic structures}
-\subsection{Induced module}
+
+Let $(M,\lambda)$ be a $T$-module. 
+\begin{align}
+    \label{eq:maas1}\lambda_a([m_1,m_2,m_3])&=[\lambda_a(m_1),\lambda_a(m_2),\lambda_a(m_3)],\\
+    \label{eq:maas2}\lambda_{[a_1,a_2,a_3]}(m)&=[\lambda_{a_1}(m),\lambda_{a_2}(m),\lambda_{a_3}(m)],\\
+    \label{eq:maas3}\lambda_{ab}(m)&=\lambda_a\lambda_b(m)
+\end{align}
+Notation: $\lambda_a(m)=a\cdot m$. 
+
+\subsection{Induced modules}
+
+\begin{proposition}
+    Let $(M,\lambda)$ be a left $T$-module. For all $e\in E$ define
+    \[
+    \lambda^e\colon T\to E(M),
+    \quad
+    \lambda^e(a)(m)=[\lambda_a(m),\lambda_a(e),e]=[a\cdot m,a\cdot e,e].
+    \]
+    Then 
+    \begin{enumerate}
+        \item $(M,\lambda^e)$ is a $T$-module.
+        \item For all $a\in T$, $\lambda^a(a)(e)=e$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}[Sketch of the proof]
+    The first claim.follows directly from the axioms \eqref{eq:maas1}--\eqref{eq:maas3}. For example,
+    \begin{align*}
+    \lambda_a^e([m_1,m_2,m_3])&=[\lambda_a([m_1,m_2,m_3]),\lambda_a(e),e]\\
+    &=[[\lambda_a(m_1),\lambda_a(m_2),\lambda_a(m_3)],
+    [\lambda_a(e),\lambda_a(e),\lambda_e(e)],[e,e,e]]\\
+    &=[[\lambda_a(m_1),\lambda_a(e),e],[\lambda_a(m_2),\lambda_a(e),e],[\lambda_a(m_3],\lambda_e(e),e]]\\
+    &=[\lambda_a^e(m_1),\lambda_a^e(m_2),\lambda_a^e(m_3)].
+    \end{align*} 
+    The remaining conditions are checked in a similar way. 
+    
+    The second claim is easy: $\lambda^e(a)(e)=[\lambda_a(e),\lambda_a(e),e]=e$. 
+\end{proof}
+
+Each of the modules $(M,\lambda^e)$ is called an \textbf{induced module}. 
+
+\begin{example}[left regular module]
+    $T$ is a $T$-module with 
+    $\lambda(a)(b)=ab$. Then $\lambda_a^e(b)=[ab,ae,e]$. 
+\end{example}
+
 \subsection{Congruences of modules}
+
+\begin{theorem}
+    Every congruence of a $T$-module $(M,\lambda)$ is a quotient relation 
+    by a sub-heap $N$ such that fo rall 
+    $a\in T$ and $e\in N$, $\lambda_a^e(N)\subseteq N$. Such an $N$ is called an 
+    \textbf{induced submodule of $M$}. 
+\end{theorem}
+
 \subsection{Heaps of modules}
 \subsection{Modules over trusses vs. modules over rings}
 
