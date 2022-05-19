@@ -6,6 +6,7 @@
 \usepackage{tikz-cd}
 \usepackage{datetime}
 \usepackage{hyperref}
+\usepackage{xypic}
 
 \pdfstringdefDisableCommands{%
 %  \def${}%
@@ -95,7 +96,7 @@ An algebraic structure is a collection of sets with operations. Typical and most
 %{\let\clearpage\relax\tableofcontents}
 
 % 28/4/2022
-\section{}
+\section{Lecture 1}
 
 \subsection{Introduction}
 
@@ -537,7 +538,7 @@ Note that $a\sim_Sb$ if and only if $[a,b,s]\in S$ for all $s\in S$.
 \end{proof}
 
 % 5/5/2022
-\section{}
+\section{Lecture 2}
 
 Let $H$ be a heap and $S\subseteq H$ be a sub-heap. For $a\in H$ 
 the orbit of $a$ is the set
@@ -1000,7 +1001,7 @@ $\left(\Z,[-,-,-]\right)$ are in bijective correspondence with orbits of the con
 action of $D_\infty$ on $I_2(\Z)$. 
 
 % 12/5/2022
-\section{}
+\section{Lecture 3}
 
 \subsection{A binary perspective}
 
@@ -1122,7 +1123,7 @@ A \textbf{sub-truss} of $T$ is a non-empty subset of $T$ closed under both opera
     \]
 \end{proof}
 
-\subsection{Ideal extensions and double homothetism}
+\subsection{Ideal extensions and double homothetisms}
 
 We first start with some definitions that independently 
 go back to Mac Lane, Hoschild
@@ -1214,7 +1215,32 @@ The following result appears in \cite{MR4396016}.
 \subsection{Ideal extension from trusses}
 
 \begin{theorem}
+Let $T$ be non-empty truss, $e\in T$, and let $R(T;e)$ be the associated ring. Define
+\[
+\varepsilon_R : T \to T,\quad a\mapsto [ea,e^2,e], \qquad \varepsilon_L : T \to T,\quad a\mapsto [ae,e^2,e].
+\]
+Then:
+1) $(\varepsilon_L,\varepsilon_R, e^2)$ is a homothetic datum on $R(T;e)$.
 
+2) The ring $R(e):= R(T;e)(\varepsilon ,e^2)$ has multiplication (written in the abelian group $G(T;e)$ with $kx$ meaning $x+x\ldots +x$; the juxtaposition of elements in $T$ means the multiplication in $T$)
+\[
+(a,k)(b,l) = (ab +(l-1)ae+(k-1)eb + (k-1)(l-1)e^2, k\times l).
+\]
+
+3) The sequence
+\[
+    \begin{tikzcd}
+	    {0} & {R(T;e)} & {T(e)} & {\Z} & {0}
+	    \arrow["{\Psi_R}", from=1-2, to=1-3]
+	    \arrow[from=1-1, to=1-2]
+	    \arrow[from=1-2, to=1-3]
+	    \arrow["{\Psi_{\Z}}", from=1-3, to=1-4]
+	    \arrow[from=1-4, to=1-5]
+    \end{tikzcd},
+    \]
+    where $\Psi_R(a) = (a,0)$ and $\Psi_\Z(a,k) = k$, is an ideal extension of $R(T;e)$ to $T(e)$ by $\Z$.
+    
+    4) $(T,1) = T(T(e); (e,1)$.
 \end{theorem}
 
 \begin{proof}[Sketch of the proof]
@@ -1222,8 +1248,16 @@ The following result appears in \cite{MR4396016}.
     
     3) follows from Theorem \ref{thm:ring}. 
     
-    4)...
-\end{proof}
+    4) Note that, for all $a\in T$,
+    \[
+    (e,1) + \Psi_R(a) = (e,1) + (a,0) = (a,1),
+    \]
+    since $e$ is the neutral element in the retract $G(T;e)$. In the ring $T(e)$,
+    \[
+    (a,1)(b,1) = (ab + (1-1)ea + (1-1)be +(1-1)^2e^2 ,1) = (ab,1),
+    \]
+    so that $T$ embeds into $T(e)$ as a subtruss as claimed.
+    \end{proof}
 
 \subsection{Some lessons}
 
@@ -1235,7 +1269,21 @@ The following result appears in \cite{MR4396016}.
 \end{enumerate}
 
 \begin{example}
-    Let $A$ be an abelian group...
+    Let $A$ be an abelian group. We would like to find all isomorphism classes of trusses $T$ on the heap $H(A)$ such that the associated ring $R(T;0)$ (the choice of the retracting element doesn't matter, since we are studying isomorphism classes; with this choice the additive group of the ring $R(T;0)$ is simply $A$) has the zero multiplication (e.g.\ this would complete the classification of trusses on the heap of the group $\mathbb{Q}/\mathbb{Z}$ since the ring with the zero multiplication is the only one that can be built on this group).
+    
+    One can show that homothetic data giving rise to such trusses correspond to the ordered direct sum decompositions $\mathbf{A} = (A_1,A_2,A_3,A_4)$ of $A$ into abelian subgroups. Trusses corresponding to isomorphic decompositions $A_i\cong B_i$ are isomorphic. The produced in a truss $T(\mathbf{A})$ has the form:
+    \[
+    (a_1+a_2+a_3+a_4)(b_1+b_2+b_3+b_4) = b_1+a_2+a_3+b_3,
+    \]
+    $a_i, b_i \in A_i$. So, in particular if $A$ is indecomposable, then there are four non-isomorphic trusses:
+    
+    1) $T(A,0,0,0)$ has product $ab=b$,
+    
+    2) $T(0,A,0,0)$ has product $ab=a$,
+    
+    3) $T(0,0,A,0)$ has product $ab=a+b$ (a trivial brace),
+    
+    4) $T(0,0,0,A)$ has product $ab=0$.
 \end{example}
 
 \subsection{Congruences of trusses: paragons}
@@ -1276,6 +1324,18 @@ and $f(ab)=f(a)f(b)$ for all $a,b\in A$.
     \end{align*}
     Similarly, $f([pa,qa,q])=b$. 
 \end{proof}
+
+\section{}
+
+\subsection{Parangon and congruences in trusses}
+\subsection{Congruences in one-sided trusses}
+\subsection{Examples}
+\subsection{Modules over trusses}
+\subsection{Modules as algebraic structures}
+\subsection{Induced module}
+\subsection{Congruences of modules}
+\subsection{Heaps of modules}
+\subsection{Modules over trusses vs. modules over rings}
 
 
 \bibliographystyle{abbrv}
